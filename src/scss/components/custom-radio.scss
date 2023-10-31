@@ -1,0 +1,60 @@
+.custom-radio {
+  $self: &;
+  position: relative;
+  font-size: rem(16);
+  line-height: 1.3;
+  min-height: rem(40);
+
+  &__input {
+    position: absolute;
+    z-index: 3;
+    top: -1px;
+    left: -1px;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  &__label {
+    padding-left: rem(60);
+    padding-top: rem(10);
+    color: var(--color-black);
+  }
+
+  &__icon {
+    position: absolute;
+    z-index: 2;
+    top: 1px;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: rem(40);
+    height: rem(40);
+    border-radius: 50%;
+    border: 2px solid $lineColor;
+
+    &:after {
+      content: '';
+      width: rem(20);
+      height: rem(20);
+      border-radius: 50%;
+      background-color: $deepCerise;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity $defaultTransition, visibility $defaultTransition;
+    }
+  }
+
+  &__input {
+    &:checked {
+      & + #{$self}__icon {
+        &::after {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+  }
+}

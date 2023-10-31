@@ -31,7 +31,7 @@ class Tabs {
     this.tabs = document.querySelector(`[data-tabs="${selector}"]`);
 
     if (!this.tabs) {
-      console.error(this.errors.selectorNotExist);
+      // console.error(this.errors.selectorNotExist);
       return;
     }
 
@@ -51,11 +51,11 @@ class Tabs {
    */
   #check() {
     if (this.isTabsUnique()) {
-      console.error(this.errors.duplicateTabs);
+      // console.error(this.errors.duplicateTabs);
     }
 
     if (this.triggers.length !== this.panels.length) {
-      console.error(this.errors.mismatch);
+      // console.error(this.errors.mismatch);
     }
   }
 
@@ -78,20 +78,20 @@ class Tabs {
       trigger.setAttribute('aria-controls', `${tabsName}_${i + 1}`);
       trigger.setAttribute('tabindex', '-1');
       trigger.setAttribute('id', `${tabsName}_${i + 1}`);
-      trigger.classList.remove('active');
+      trigger.classList.remove('active-nav-link');
     });
 
     this.panels.forEach((panel, i) => {
       panel.setAttribute('role', 'tabpanel');
       panel.setAttribute('tabindex', '-1');
       panel.setAttribute('aria-labelledby', this.triggers[i].id);
-      panel.classList.remove('active');
+      panel.classList.remove('active-panel');
     });
 
-    this.triggers[defaultTab].classList.add('active');
+    this.triggers[defaultTab].classList.add('active-nav-link');
     this.triggers[defaultTab].removeAttribute('tabindex');
     this.triggers[defaultTab].setAttribute('aria-selected', 'true');
-    this.panels[defaultTab].classList.add('active');
+    this.panels[defaultTab].classList.add('active-panel');
   }
 
   /**
@@ -164,11 +164,11 @@ class Tabs {
     currentTab.removeAttribute('aria-selected');
     currentTab.setAttribute('tabindex', '-1');
 
-    this.removeClass(this.panels[currentIndex]);
-    this.addClass(this.panels[nextIndex]);
+    this.removeClass(this.panels[currentIndex], true);
+    this.addClass(this.panels[nextIndex], true);
 
-    this.removeClass(this.triggers[currentIndex]);
-    this.addClass(this.triggers[nextIndex]);
+    this.removeClass(this.triggers[currentIndex], false);
+    this.addClass(this.triggers[nextIndex], false);
 
     this.options.onChanged({
       data: this,
@@ -195,16 +195,16 @@ class Tabs {
    * Add a CSS class to an element.
    * @param {HTMLElement} element - The element to add the class to.
    */
-  addClass(element) {
-    element?.classList.add('active');
+  addClass(element, isPanel) {
+    element?.classList.add(isPanel ? 'active-panel' : 'active-nav-link');
   }
 
   /**
    * Remove a CSS class from an element.
    * @param {HTMLElement} element - The element to remove the class from.
    */
-  removeClass(element) {
-    element?.classList.remove('active');
+  removeClass(element, isPanel) {
+    element?.classList.remove(isPanel ? 'active-panel' : 'active-nav-link');
   }
 }
 

@@ -1,0 +1,100 @@
+.activity-page {
+  &__welcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: vw(684);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57)),
+      url('../../images/activity/company.png') no-repeat center 70% / cover;
+
+    @include tablet {
+      height: cs(640);
+    }
+
+    @include mobile {
+      height: cs(593);
+      background-position-x: 25%;
+    }
+  }
+
+  &__welcome-content {
+    width: vw($bigDesktopWidthContainer);
+    margin: 0 auto;
+    padding-bottom: vw(70);
+
+    @include desktop {
+      width: vw($largeDesktopWidthContainer);
+    }
+
+    @include mediumDesktop {
+      width: vw($desktopWidthContainer);
+    }
+
+    @include tablet {
+      width: auto;
+      padding-bottom: cs(40);
+    }
+
+    @include mobile {
+      padding-bottom: cs(30);
+    }
+  }
+
+  &__breadcrumbs {
+    padding-top: vw(50);
+    width: vw($bigDesktopWidthContainer);
+    margin: 0 auto;
+
+    @include desktop {
+      width: vw($largeDesktopWidthContainer);
+    }
+
+    @include mediumDesktop {
+      width: vw($desktopWidthContainer);
+    }
+
+    @include tablet {
+      padding: cs(60) cs(32) 0;
+    }
+
+    @include mobile {
+      padding: cs(30) cs(25) 0;
+    }
+
+    .breadcrumbs__link {
+      color: $whiteColor;
+
+      &::after {
+        @include arrow(35%, right, -20, 'e9ebf6', right, 10, 7);
+      }
+    }
+  }
+
+  &__page-title {
+    color: $whiteColor;
+  }
+
+  &__page-description {
+    width: 65%;
+    margin-top: vw(50);
+    color: $whiteColor;
+    @include fontType(24, 31, medium);
+
+    @include tablet {
+      width: auto;
+      margin-top: cs(50);
+      @include fontType(22, 29, medium);
+    }
+
+    @include mobile {
+      margin-top: cs(20);
+      @include fontType(20, 26, medium);
+    }
+  }
+}
+
+.image-right {
+  @include mobile {
+    object-position: right;
+  }
+}

@@ -1,31 +1,68 @@
-$maxWidth: 1920; // максимальная ширина страницы
-$minWidth: 320; // минимальная ширина телефона
-$maxWidthContainer: 1200; // ширина контейнера с учетом padding слева и справа
-$containerWidth: 1160; // ширина контейнера из макета
+$maxWidth: 1920;
+$minWidth: 320;
+$maxWidthContainer: 1200;
+$containerWidth: 1160;
 
-$mainOffset: 15; // отступы безопасности для контейнера
-$mainFont: ''; // !указать здесь основное семейство шрифта
-$mainWeight: 400; // !указать здесь основное начертание шрифта
+$baseScreenSize: 1640;
+$desktopScreenSize: 1440;
+$mediumScreenSize: 1280;
+$tabletScreenSize: 1024;
+$mobileScreenSize: 550;
 
-$headerHeight: 100;
-$footerHeight: 100;
+$bigDesktopWidthContainer: 1578;
+$largeDesktopWidthContainer: 1260;
+$desktopWidthContainer: 962;
+
+$mainOffset: 15;
+$mainFont: 'Manrope';
+$mainWeight: 400;
+
+$headerHeight: 70;
+$headerTabletHeight: 60;
+$headerMobileHeight: 90;
+$footerHeight: 720;
+$footerMobileHeight: 882;
+
+$bigDesktopContainer: 170;
+$desktopContainer: 90;
+$tabletContainer: 30;
+$mobileContainer: 25;
+
+$desktopMarginBlock: 100;
+$tabletMarginBlock: 60;
+$mobileMarginBlock: 40;
+$marginElement: 30;
+$marginSmall: 20;
 
 $mainRadius: rem(10);
 
-$whiteColor: #fff;
-$blackColor: #131313;
-$grayColor: #6f6f6f;
-$redColor: #ff4040;
+$whiteBckg: #ffffff;
+$greyBckg: #fcfcfc;
+
+$whiteColor: #e9ebf6;
+$blackColor: #0e0e0e;
+$greyColor: #808080;
+$navy: #00005a;
+$deepCerise: #e13181;
+$greySuit: #8a8a8d;
+$lineColor: #e6e6e6;
+
+$blueArrow: '00005a';
+$pinkArrow: 'e13181';
+$whiteArrow: 'fcfcfc';
+$greyArrow: 'D9D9D9';
+$darkGreyArrow: '808080';
 
 $firstAccentColor: $blackColor;
-$secondAccentColor: $redColor;
+$secondAccentColor: $navy;
 
-$fontFamily: $mainFont, sans-serif; // Семейство шрифта по умолчанию
-$fontColor: $blackColor; // Цвет шрифта по умолчанию
-$fontSize: 16; // Размер шрифта по умолчанию
-$fontWeight: $mainWeight; // Жирность шрифта по умолчанию
+$fontFamily: $mainFont, sans-serif;
+$fontColor: $blackColor;
+$fontSize: 16;
+$fontWeight: $mainWeight;
 
 $standartTrans: all 280ms ease-in-out 0ms;
+$defaultTransition: 300ms ease-in-out;
 
 $btnBoxShadow: 0px 2px 3px rgba(#000, 10%), 0px 8px 3px rgba(#000, 10%);
 

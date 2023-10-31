@@ -4,6 +4,7 @@ class Popup {
     this.body = document.body;
     this.pageWrapper = document.querySelector('.page');
     this.lockPaddingElements = document.querySelectorAll('[data-lp]');
+    this.rootElement = document.querySelector('.root');
   }
 
   /**

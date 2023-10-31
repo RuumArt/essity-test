@@ -1,0 +1,248 @@
+.press-releases-page {
+  &__page-title {
+    margin-bottom: vw(95);
+
+    @include tablet {
+      margin-bottom: cs(10);
+    }
+
+    @include mobile {
+      margin-bottom: cs(15);
+    }
+  }
+
+  &__contacts {
+    margin-top: vw(5);
+    position: sticky;
+    top: vw(50);
+    height: max-content;
+    width: vw(230);
+
+    @include tablet {
+      margin-top: cs(5);
+      position: fixed;
+      top: 85%;
+      background-color: white;
+      padding: cs(15);
+      border-radius: 5%;
+      border: 1px solid $lineColor;
+    }
+
+    @include mobile {
+      top: 75%;
+    }
+  }
+
+  &__popup-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__popup {
+    position: relative;
+    margin: 0 auto;
+    width: max-content;
+    background-color: white;
+    padding: vw(20) vw(150) vw(20) vw(20);
+    z-index: 10;
+
+    @include tablet {
+      padding: cs(20) cs(150) cs(20) cs(20);
+    }
+
+    @include mobile {
+      padding: cs(20) cs(100) cs(20) cs(20);
+    }
+  }
+
+  &__cross {
+    cursor: pointer;
+    position: absolute;
+    width: cs(20);
+    height: cs(20);
+    top: cs(10);
+    right: cs(10);
+  }
+}
+
+.press-releases {
+  display: flex;
+  justify-content: space-between;
+
+  &__content {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+
+    @include mediumDesktop {
+      width: 75%;
+    }
+
+    @include tablet {
+      flex-direction: column;
+      width: auto;
+    }
+  }
+
+  &__list-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    @include tablet {
+      margin-top: cs(60);
+    }
+
+    @include mobile {
+      margin-top: cs(30);
+    }
+  }
+
+  &__years {
+    display: flex;
+    flex-direction: column;
+    margin-right: vw(60);
+    position: sticky;
+    top: vw(50);
+    height: max-content;
+    width: max-content;
+
+    @include tablet {
+      position: relative;
+      top: 0;
+      background-color: rgba(255, 255, 255, 0.75);
+      flex-direction: row;
+      margin-right: 0;
+      justify-content: flex-end;
+      padding: cs(10);
+      margin-left: cs(-10);
+    }
+
+    @include mobile {
+      justify-content: flex-start;
+      margin-bottom: cs(20);
+    }
+  }
+
+  &__year-btn {
+    background: none;
+    color: $greyColor;
+    @include fontType(22, 29, semiBold);
+    @include notLast {
+      margin-bottom: vw(15);
+    }
+    transition: color 0.3s;
+
+    &:hover {
+      color: $navy;
+    }
+
+    @include tablet {
+      @include notLast {
+        margin-bottom: 0;
+        margin-right: cs(30);
+      }
+    }
+
+    @include mobile {
+      @include fontType(16, 21, medium);
+      @include notLast {
+        margin-bottom: 0;
+        margin-right: cs(30);
+      }
+    }
+  }
+}
+
+.press-release-item {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  margin-bottom: vw(50);
+
+  &:hover {
+    .text-btn {
+      &::after {
+        left: vw(125);
+      }
+    }
+  }
+
+  @include tablet {
+    width: cs(927);
+    margin-bottom: cs(40);
+
+    &:hover {
+      .text-btn {
+        &::after {
+          left: cs(125);
+        }
+      }
+    }
+  }
+
+  @include mobile {
+    width: 100%;
+  }
+
+  &__date {
+    color: $greyColor;
+    @include arialFont(12, 14);
+    margin-bottom: vw(15);
+
+    @include tablet {
+      margin-bottom: cs(10);
+    }
+  }
+
+  &__title {
+    color: $navy;
+    @include fontType(36, 43, medium);
+    margin-bottom: vw(10);
+
+    @include tablet {
+      @include fontType(32, 42, medium);
+      margin-bottom: cs(10);
+    }
+
+    @include mobile {
+      @include fontType(28, 36, medium);
+    }
+  }
+
+  &__description {
+    @include arialFont(18, 23);
+    max-height: vw(70);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+
+    @include tablet {
+      max-height: cs(70);
+    }
+
+    @include mobile {
+      @include arialFont(16, 21);
+      max-height: cs(100);
+      -webkit-line-clamp: 4;
+    }
+  }
+}
+
+.current-year-link {
+  color: $navy;
+}
+
+.dropdown-press {
+  position: relative;
+  width: max-content;
+  margin-bottom: cs(20);
+  cursor: pointer;
+  color: $navy;
+  @include fontType(20, 26, medium);
+
+  &::after {
+    content: '';
+    @include arrow(30%, right, -30, $blueArrow, bottom, 13, 13);
+  }
+}

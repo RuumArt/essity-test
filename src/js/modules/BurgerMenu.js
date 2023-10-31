@@ -1,40 +1,37 @@
-import Popup from './Popup.js';
-
-class BurgerMenu extends Popup {
+class BurgerMenu {
   constructor() {
-    super();
-
-    this.burgerButton = document.querySelector('.icon-menu');
+    this.body = document.body;
+    this.burgerButton = document.querySelector('.burger-button');
+    this.burgerMenu = document.querySelector('.burger-menu');
+    this.burgerCross = document.getElementById('burger-cross');
+    this.rootElement = document.querySelector('.root');
   }
 
-  /**
-   * Initialize the menu functionality.
-   */
   init() {
     if (this.burgerButton) {
-      document.addEventListener('click', ({ target }) => {
-        if (target.closest('.icon-menu')) {
-          this.html.classList.toggle('menu-open');
-          this.toggleBodyLock(this.html.classList.contains('menu-open'));
+      this.burgerButton.addEventListener('click', () => {
+        this.burgerMenu.children[1].classList.add('menu-open');
+        this.burgerMenu.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        this.rootElement.style.pointerEvents = 'none';
+        this.burgerMenu.style.pointerEvents = 'all';
+      });
+      this.burgerMenu.addEventListener('click', (event) => {
+        if (event.target.classList.contains('burger-menu__left')) {
+          this.burgerMenu.children[1].classList.remove('menu-open');
+          this.burgerMenu.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+          this.rootElement.style.pointerEvents = 'all';
+          this.burgerMenu.style.pointerEvents = 'none';
         }
       });
+      if (this.burgerCross) {
+        this.burgerCross.addEventListener('click', () => {
+          this.burgerMenu.children[1].classList.remove('menu-open');
+          this.burgerMenu.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+          this.rootElement.style.pointerEvents = 'all';
+          this.burgerMenu.style.pointerEvents = 'none';
+        });
+      }
     }
-  }
-
-  /**
-   * Open the menu.
-   */
-  menuOpen() {
-    this.toggleBodyLock(true);
-    this.html.classList.add('menu-open');
-  }
-
-  /**
-   * Close the menu.
-   */
-  menuClose() {
-    this.toggleBodyLock(false);
-    this.html.classList.remove('menu-open');
   }
 }
 

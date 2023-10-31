@@ -1,0 +1,41 @@
+.gallery-popup {
+  display: flex;
+  align-items: center;
+  padding: vw(100) vw($desktopContainer);
+
+  @include tablet {
+    padding: cs(100) cs($desktopContainer);
+  }
+
+  @include mobile {
+    padding: 65% cs($mobileContainer);
+  }
+
+  &__background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+  }
+
+  &__cross {
+    cursor: pointer;
+    position: absolute;
+    top: vw(40);
+    right: vw(40);
+
+    @include tablet {
+      width: cs(20);
+      height: cs(20);
+    }
+
+    @include mobile {
+    }
+  }
+
+  &__photo {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+  }
+}

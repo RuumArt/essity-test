@@ -1,55 +1,81 @@
 // !Адаптивное свойство (clamp)
-@mixin adaptiveClamp($property, $startSize, $minSize, $widthFrom: $containerWidth, $widthTo: $minWidth, $keepSize: 0) {
-	// Для calc();
-	$addSize: math.div($startSize - $minSize, 16);
+@mixin adaptiveClamp(
+  $property,
+  $startSize,
+  $minSize,
+  $widthFrom: $containerWidth,
+  $widthTo: $minWidth,
+  $keepSize: 0
+) {
+  // Для calc();
+  $addSize: math.div($startSize - $minSize, 16);
 
-	@if ($widthFrom == $containerWidth and $maxWidthContainer == 0) {
-		$widthFrom: $maxWidth;
-	}
-	@if ($minSize <= 0) {
-		$minSize: 0.0001;
-	}
-	@if ($startSize <= 0) {
-		$startSize: 0.0001;
-	}
+  @if ($widthFrom == $containerWidth and $maxWidthContainer == 0) {
+    $widthFrom: $maxWidth;
+  }
+  @if ($minSize <= 0) {
+    $minSize: 0.0001;
+  }
+  @if ($startSize <= 0) {
+    $startSize: 0.0001;
+  }
 
-	// Брейк-поинты в EM
-	$widthFromMedia: em($widthFrom);
-	$widthToMedia: em($widthTo);
+  // Брейк-поинты в EM
+  $widthFromMedia: em($widthFrom);
+  $widthToMedia: em($widthTo);
 
-	// Формула плавающего значения
-	// Источник: https://css-tricks.com/linearly-scale-font-size-with-css-clamp-based-on-the-viewport/
-	$slope: math.div(($startSize - $minSize), ($widthFrom - $widthTo));
-	$yIntersection: -$widthTo * $slope + $minSize;
-	$flyValue: #{rem($yIntersection)}" + " #{$slope * 100}vw;
+  // Формула плавающего значения
+  // Источник: https://css-tricks.com/linearly-scale-font-size-with-css-clamp-based-on-the-viewport/
+  $slope: math.div(($startSize - $minSize), ($widthFrom - $widthTo));
+  $yIntersection: -$widthTo * $slope + $minSize;
+  $flyValue: #{rem($yIntersection)}' + ' #{$slope * 100}vw;
 
-	// Получение значения свойства
-	$propertyValue: #{"clamp(" rem($minSize) "," $flyValue "," rem($startSize) ")"};
-	// Если отрицательные значения
-	@if ($minSize > $startSize) {
-		$propertyValue: #{"clamp(" rem($startSize) "," $flyValue "," rem($minSize) ")"};
-	}
+  // Получение значения свойства
+  $propertyValue: #{'clamp(' rem($minSize) ',' $flyValue ',' rem($startSize) ')'};
+  // Если отрицательные значения
+  @if ($minSize > $startSize) {
+    $propertyValue: #{'clamp('
+      rem($startSize)
+      ','
+      $flyValue
+      ','
+      rem($minSize)
+      ')'};
+  }
 
-	@if $widthFrom == $containerWidth or $widthFrom == $maxWidth or $keepSize == 1 or $keepSize == 2 {
-		@media (min-width: $widthFromMedia) {
-			#{$property}: rem($startSize);
-		}
-	}
-	@media (min-width: $widthToMedia) and (max-width: $widthFromMedia) {
-		// Если поддерживается clamp();
-		@supports (#{$property}: $propertyValue) {
-			#{$property}: $propertyValue;
-		}
-		// Если не поддерживается clamp();
-		@supports not (#{$property}: $propertyValue) {
-			#{$property}: calc(#{rem($minSize)} + #{$addSize} * (100vw - #{rem($widthTo)}) / #{math.div($widthFrom, 16) - math.div($widthTo, 16)});
-		}
-	}
-	@if $widthTo == $minWidth or $keepSize == 1 or $keepSize == 3 {
-		@media (max-width: $widthToMedia) {
-			#{$property}: rem($minSize);
-		}
-	}
+  @if $widthFrom ==
+    $containerWidth or
+    $widthFrom ==
+    $maxWidth or
+    $keepSize ==
+    1 or
+    $keepSize ==
+    2
+  {
+    @media (min-width: $widthFromMedia) {
+      #{$property}: rem($startSize);
+    }
+  }
+  @media (min-width: $widthToMedia) and (max-width: $widthFromMedia) {
+    // Если поддерживается clamp();
+    @supports (#{$property}: $propertyValue) {
+      #{$property}: $propertyValue;
+    }
+    // Если не поддерживается clamp();
+    @supports not (#{$property}: $propertyValue) {
+      #{$property}: calc(
+        #{rem($minSize)} + #{$addSize} * (100vw - #{rem($widthTo)}) / #{math.div(
+            $widthFrom,
+            16
+          ) - math.div($widthTo, 16)}
+      );
+    }
+  }
+  @if $widthTo == $minWidth or $keepSize == 1 or $keepSize == 3 {
+    @media (max-width: $widthToMedia) {
+      #{$property}: rem($minSize);
+    }
+  }
 }
 
 // !gradient for text
@@ -90,23 +116,23 @@
 
 // !styled placeholder for TextArea
 @mixin styledPlaceholder($color, $fontSize: inherit, $lineHeight: normal) {
-  &:-moz-placeholder { 
-    color: $color; 
+  &:-moz-placeholder {
+    color: $color;
     font-size: $fontSize;
     line-height: $lineHeight;
   }
-  &::-moz-placeholder { 
-    color: $color; 
+  &::-moz-placeholder {
+    color: $color;
     font-size: $fontSize;
     line-height: $lineHeight;
   }
-  &::-webkit-input-placeholder { 
-    color: $color; 
+  &::-webkit-input-placeholder {
+    color: $color;
     font-size: $fontSize;
     line-height: $lineHeight;
   }
-  &:-ms-input-placeholder { 
-    color: $color; 
+  &:-ms-input-placeholder {
+    color: $color;
     font-size: $fontSize;
     line-height: $lineHeight;
   }
@@ -114,14 +140,38 @@
 
 // !плавное убирание placeholder
 @mixin hidePlaceholder($time: 300, $effect: ease) {
-  &::-webkit-input-placeholder       {opacity: 1; transition: opacity #{$time} + ms $effect;}
-  &::-moz-placeholder                {opacity: 1; transition: opacity #{$time} + ms $effect;}
-  &:-moz-placeholder                 {opacity: 1; transition: opacity #{$time} + ms $effect;}
-  &:-ms-input-placeholder            {opacity: 1; transition: opacity #{$time} + ms $effect;}
-  &:focus::-webkit-input-placeholder {opacity: 0; transition: opacity #{$time} + ms $effect;}
-  &:focus::-moz-placeholder          {opacity: 0; transition: opacity #{$time} + ms $effect;}
-  &:focus:-moz-placeholder           {opacity: 0; transition: opacity #{$time} + ms $effect;}
-  &:focus:-ms-input-placeholder      {opacity: 0; transition: opacity #{$time} + ms $effect;}
+  &::-webkit-input-placeholder {
+    opacity: 1;
+    transition: opacity #{$time} + ms $effect;
+  }
+  &::-moz-placeholder {
+    opacity: 1;
+    transition: opacity #{$time} + ms $effect;
+  }
+  &:-moz-placeholder {
+    opacity: 1;
+    transition: opacity #{$time} + ms $effect;
+  }
+  &:-ms-input-placeholder {
+    opacity: 1;
+    transition: opacity #{$time} + ms $effect;
+  }
+  &:focus::-webkit-input-placeholder {
+    opacity: 0;
+    transition: opacity #{$time} + ms $effect;
+  }
+  &:focus::-moz-placeholder {
+    opacity: 0;
+    transition: opacity #{$time} + ms $effect;
+  }
+  &:focus:-moz-placeholder {
+    opacity: 0;
+    transition: opacity #{$time} + ms $effect;
+  }
+  &:focus:-ms-input-placeholder {
+    opacity: 0;
+    transition: opacity #{$time} + ms $effect;
+  }
 }
 
 // !after-before
@@ -129,6 +179,116 @@
   &::#{$type} {
     content: '';
     position: $pos;
-    @content
+    @content;
+  }
+}
+
+@mixin desktop() {
+  @media only screen and (max-width: #{$baseScreenSize}px) {
+    @content;
+  }
+}
+
+@mixin mediumDesktop() {
+  @media only screen and (max-width: #{$mediumScreenSize}px) {
+    @content;
+  }
+}
+
+@mixin tablet() {
+  @media only screen and (max-width: #{$tabletScreenSize}px) {
+    @content;
+  }
+}
+
+@mixin mobile() {
+  @media only screen and (max-width: #{$mobileScreenSize}px) {
+    @content;
+  }
+}
+
+@function cs($pixels) {
+  @return calc(((#{$pixels} / var(--gfs)) * 100) * 1vw);
+}
+
+@function vw($pixels) {
+  @return #{rem($pixels)};
+}
+
+@function clampSize($min, $max) {
+  @return max(#{$min}px, #{cs($max)});
+}
+
+@mixin fontType($font-size, $line-height, $font-type: regular) {
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-size: vw($font-size);
+  line-height: vw($line-height);
+  @include tablet {
+    font-size: cs($font-size);
+    line-height: cs($line-height);
+  }
+  @if $font-type==bold {
+    font-weight: 700;
+  }
+  @if $font-type==semiBold {
+    font-weight: 600;
+  }
+  @if $font-type==medium {
+    font-weight: 500;
+  }
+  @if $font-type==regular {
+    font-weight: 400;
+  }
+}
+
+@mixin arialFont($font-size, $line-height) {
+  font-family: 'Arial', sans-serif;
+  font-style: normal;
+  font-size: vw($font-size);
+  line-height: vw($line-height);
+  @include tablet {
+    font-size: cs($font-size);
+    line-height: cs($line-height);
+  }
+  font-weight: 400;
+}
+
+@mixin arrow($top, $position, $indent, $color, $direction, $width, $height) {
+  position: absolute;
+  top: $top;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23#{$color}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: vw($width);
+  height: vw($height);
+  @include tablet {
+    width: cs($width);
+    height: cs($height);
+  }
+  transition: all 0.3s ease;
+  @if $position== 'right' {
+    right: vw($indent);
+    @include tablet {
+      right: cs($indent);
+    }
+  }
+  @if $position== 'left' {
+    left: vw($indent);
+    @include tablet {
+      left: cs($indent);
+    }
+  }
+  @if $direction==bottom {
+    transform: rotate(0deg);
+  }
+  @if $direction==top {
+    transform: rotate(180deg);
+  }
+  @if $direction==left {
+    transform: rotate(90deg);
+  }
+  @if $direction==right {
+    transform: rotate(270deg);
   }
 }

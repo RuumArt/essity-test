@@ -1,0 +1,22 @@
+.students-page {
+  &__photo {
+    position: sticky;
+    top: cs(30);
+    height: 100%;
+
+    @include tablet {
+      height: cs(366);
+    }
+
+    @include mobile {
+      height: cs(340);
+      position: initial;
+    }
+  }
+
+  &__page-title {
+    @include mobile {
+      margin-top: cs(20);
+    }
+  }
+}

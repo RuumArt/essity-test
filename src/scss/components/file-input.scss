@@ -1,0 +1,36 @@
+.file-input {
+  &__item {
+    position: relative;
+    display: block;
+    padding: rem(12) rem(27);
+    margin-bottom: rem(20);
+    background-color: $deepCerise;
+    color: $whiteBckg;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: rem(16);
+    font-weight: 700;
+    line-height: 1.36;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 10px;
+      background-image: url(../images/icons/white-cross.png);
+      background-position: center;
+      background-size: cover;
+      cursor: pointer;
+    }
+  }
+  
+  &__target {
+    display: none;
+  }
+
+}

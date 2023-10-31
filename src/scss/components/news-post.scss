@@ -1,0 +1,181 @@
+.news-post {
+  &__breadcrumbs {
+    margin-bottom: vw(35);
+
+    @include tablet {
+      margin-bottom: cs(35);
+    }
+  }
+
+  &__page {
+    display: flex;
+    justify-content: space-between;
+    margin-top: vw(66);
+    margin-bottom: vw(84);
+
+    @include tablet {
+      margin-top: cs(80);
+      margin-bottom: cs(60);
+    }
+
+    @include mobile {
+      flex-direction: column;
+      margin-top: cs(40);
+      margin-bottom: cs(40);
+    }
+  }
+
+  &__content {
+    width: 66%;
+
+    @include tablet {
+      width: cs(636);
+    }
+
+    @include mobile {
+      width: auto;
+    }
+  }
+
+  &__date {
+    margin-bottom: vw(15);
+    color: $greyColor;
+    @include arialFont(16, 20.8);
+
+    @include tablet {
+      margin-bottom: cs(15);
+      @include arialFont(12, 13.8);
+    }
+
+    @include mobile {
+      margin-bottom: cs(15);
+    }
+  }
+
+  &__text {
+    margin-bottom: cs(14);
+    @include arialFont(18, 23);
+
+    @include tablet {
+      margin-bottom: vw(14);
+    }
+
+    @include mobile {
+      @include arialFont(16, 20);
+    }
+  }
+
+  &__img {
+    position: relative;
+    aspect-ratio: 16/8;
+    overflow: hidden;
+    margin-top: vw(50);
+    margin-bottom: vw(46);
+
+    @include tablet {
+      width: cs(636);
+      height: cs(374);
+      margin-top: cs(10);
+      margin-bottom: cs(30);
+    }
+
+    @include mobile {
+      width: cs(340);
+      height: cs(340);
+    }
+
+    img {
+      position: absolute;
+      object-fit: cover;
+      object-position: 50% 0%;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &__similar {
+    width: 22%;
+
+    @include mediumDesktop {
+      width: 30%;
+    }
+
+    @include tablet {
+      width: cs(355);
+    }
+
+    @include tablet {
+      width: cs(308);
+    }
+  }
+}
+.similar {
+  &__main-title {
+    color: $navy;
+    margin-bottom: vw(30);
+    @include fontType(28, 36, medium);
+
+    @include tablet {
+      margin-bottom: cs(25);
+      @include fontType(24, 28, medium);
+    }
+
+    @include mobile {
+      @include fontType(20, 26, medium);
+    }
+  }
+
+  &__page {
+    @include mobile {
+      display: flex;
+      flex-direction: column;
+      min-width: cs(1200);
+      width: 100%;
+      overflow: auto;
+    }
+  }
+
+  &__post {
+    @include mobile {
+      width: cs(340);
+    }
+  }
+
+  &__date {
+    margin-bottom: vw(15);
+    color: $greyColor;
+    @include arialFont(12, 15.6);
+
+    @include tablet {
+      margin-bottom: cs(10);
+      @include arialFont(12, 13.8);
+    }
+  }
+
+  &__title {
+    margin-bottom: vw(15);
+    color: $navy;
+    @include fontType(18, 18.9);
+
+    @include tablet {
+      margin-bottom: cs(10);
+      @include fontType(16, 20.8);
+    }
+  }
+
+  &__text {
+    margin-bottom: vw(30);
+    color: $blackColor;
+    @include arialFont(15, 19.5);
+    max-height: vw(80);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+
+    @include tablet {
+      max-height: cs(80);
+      margin-bottom: cs(20);
+      @include arialFont(14, 18.2);
+    }
+  }
+}

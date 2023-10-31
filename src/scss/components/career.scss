@@ -1,0 +1,112 @@
+.career-page {
+  &__welcome {
+    @include mobile {
+      height: cs(455);
+    }
+  }
+
+  &__breadcrumbs {
+    .breadcrumbs__link {
+      color: $whiteColor;
+
+      &::after {
+        @include arrow(35%, right, -20, 'e9ebf6', right, 10, 7);
+      }
+
+      @include tablet {
+        &::after {
+          @include arrow(30%, right, -20, 'e9ebf6', right, 10, 7);
+        }
+      }
+
+      @include mobile {
+        &::after {
+          @include arrow(25%, right, -20, 'e9ebf6', right, 10, 7);
+        }
+      }
+    }
+  }
+
+  &__button {
+    width: vw(305);
+
+    @include tablet {
+      width: cs(305);
+    }
+
+    @include mobile {
+      width: 100%;
+    }
+  }
+
+  &__page-description {
+    margin-top: vw(25);
+
+    @include tablet {
+      margin-top: cs(25);
+    }
+  }
+
+  &__stories-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__card-photo {
+    object-position: 0 18%;
+  }
+
+  &__quote {
+    color: $greyColor;
+    @include arialFont(24, 31);
+    font-style: italic;
+    margin-top: vw(20);
+
+    @include mediumDesktop {
+      @include arialFont(16, 21);
+      font-style: italic;
+    }
+
+    @include tablet {
+      margin-top: cs(15);
+    }
+  }
+
+  &__sub-title {
+    @include fontType(22, 23, semiBold);
+    margin: vw(20) 0 0;
+
+    @include tablet {
+      @include fontType(18, 23, semiBold);
+      margin: cs(15) 0 0;
+    }
+  }
+
+  &__student-name {
+    color: $greyColor;
+    @include arialFont(18, 23);
+    margin: vw(10) 0 vw(20);
+
+    @include tablet {
+      @include arialFont(15, 19);
+      margin: cs(5) 0 cs(15);
+    }
+  }
+
+  &__more-btn {
+    @include tablet {
+      @include fontType(18, 23, semiBold);
+
+      &::after {
+        top: 40%;
+      }
+    }
+    @include mobile {
+      @include fontType(18, 23, semiBold);
+
+      &::after {
+        top: 30%;
+      }
+    }
+  }
+}

@@ -1,64 +1,67 @@
-/**
- * !(i)
- * Код попадает в итоговый файл, только когда вызвана функция, например FLSFunctions.spollers();
- * Или когда импортирован весь файл, например import "files/script.js";
- * Неиспользуемый (не вызванный) код в итоговый файл не попадает.
-
- * Если мы хотим добавить модуль следует его раскомментировать
- */
 import {
   isWebp,
-  headerFixed,
   togglePopupWindows,
-  addTouchClass,
-  addLoadedClass,
+  fixedNavPage,
+  swiper,
+  gallerySwiper,
 } from './modules';
 
-// import BurgerMenu from './modules/BurgerMenu';
+import BurgerMenu from './modules/BurgerMenu';
+import DropDown from './modules/DropDown';
 
-// import Tabs from 'modules/Tabs';
+import Tabs from './modules/Tabs';
+import Masks from './modules/Masks';
+import CustomSelect from "./modules/CustomSelect.js";
+import AddressInput from "./modules/AddressInput.js";
+import QuestionForm from "./modules/QuestionForm.js";
+import AnswerForm from "./modules/AnswerForm.js";
+import Modal from "./modules/Modal.js";
 
-// import { MousePRLX } from './libs/parallaxMouse'
+window.outsides = {};
 
-// import AOS from 'aos'
-
-// import Swiper, { Navigation, Pagination } from 'swiper';
-
-/* Проверка поддержки webp, добавление класса webp или no-webp для HTML
- ! (i) необходимо для корректного отображения webp из css
- */
 isWebp();
+const burger = new BurgerMenu().init();
+const dropdown = new DropDown().init();
 
-/* Добавление класса touch для HTML если браузер мобильный */
-// addTouchClass();
+swiper.init();
+gallerySwiper.init();
 
-/* Добавление loaded для HTML после полной загрузки страницы */
-// addLoadedClass();
+togglePopupWindows();
+fixedNavPage();
 
-/* Модуль для работы с меню (Бургер) */
-// new BurgerMenu().init();
+Masks();
 
-/**
- *  Библиотека для анимаций
- *  документация: https://michalsnik.github.io/aos
- */
-// AOS.init();
+const customSelects = document.querySelectorAll('.custom-select');
 
-/** Параллакс мышей */
-// const mousePrlx = new MousePRLX({});
+customSelects.forEach((select) => {
+  new CustomSelect(select)
+})
 
-/** Фиксированный header */
-// headerFixed();
+const addressInputs = document.querySelectorAll('.address-input');
 
-/**
- *  Открытие/закрытие модальных окон
- * Чтобы модальное окно открывалось и закрывалось
- * На окно повешай атрибут data-popup="<название окна>"
- * И на кнопку, которая вызывает окно так же повешай атрибут data-type="<название окна>"
+addressInputs.forEach((input) => {
+  new AddressInput(input)
+});
 
- * На обертку(враппер) окна добавь класс _overlay-bg
- * На кнопку для закрытия окна добавь класс button-close
- */
-// togglePopupWindows();
+const modals = document.querySelectorAll('.js-modal');
+window.modals = {};
 
-// const tabs = new Tabs('default-tabs', {});
+modals.forEach(modal => {
+  const id = modal.getAttribute('id');
+  window.modals[id] = new Modal(modal);
+});
+
+const questForms = document.querySelectorAll('.js-question-form');
+
+questForms.forEach(form => {
+  new QuestionForm(form);
+})
+
+const answerForms = document.querySelectorAll('.js-answer-form');
+
+answerForms.forEach(form => {
+  new AnswerForm(form);
+});
+
+
+const tabs = new Tabs('stories-page', {});

@@ -1,0 +1,15 @@
+.icon {
+  display: block;
+  width: rem(24);
+  height: rem(24);
+
+  &--check {
+    width: rem(28);
+    height: rem(19);
+  }
+
+  &--quest {
+    width: rem(7);
+    height: rem(9);
+  }
+}

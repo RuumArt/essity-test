@@ -1,0 +1,21 @@
+.brands-page {
+  &__all-brands {
+    width: 100%;
+
+    @include mobile {
+      width: 240%;
+    }
+  }
+
+  &__button {
+    margin: 0;
+  }
+
+  &__sub-title {
+    @include fontType(22, 23, semiBold);
+
+    @include tablet {
+      @include fontType(18, 23, semiBold);
+    }
+  }
+}

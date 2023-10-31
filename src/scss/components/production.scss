@@ -1,0 +1,131 @@
+.content-with-photo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  @include notLast {
+    margin-bottom: vw(50);
+  }
+
+  @include tablet {
+    @include notLast {
+      margin-bottom: cs(30);
+    }
+  }
+
+  @include mobile {
+    flex-direction: column;
+  }
+
+  &__content {
+    max-width: 48%;
+
+    @include tablet {
+      max-width: cs(467);
+    }
+
+    @include mobile {
+      margin-bottom: 0;
+    }
+  }
+
+  &__text-wrapper {
+    margin-bottom: vw(30);
+    @include tablet {
+      margin-bottom: cs(30);
+    }
+  }
+
+  &__text {
+    @include arialFont(18, 23);
+    @include notLast {
+      margin-bottom: vw(20);
+    }
+    @include tablet {
+      @include notLast {
+        margin-bottom: cs(20);
+      }
+    }
+  }
+
+  &__button {
+    width: vw(123);
+
+    @include tablet {
+      width: cs(123);
+    }
+
+    @include mobile {
+      width: 100%;
+      margin-bottom: cs(40);
+    }
+  }
+
+  &__photo {
+    object-fit: cover;
+    width: 49%;
+    height: vw(480);
+
+    @include mediumDesktop {
+      height: auto;
+    }
+
+    @include tablet {
+      width: cs(467);
+      height: auto;
+    }
+
+    @include mobile {
+      width: cs(340);
+      height: cs(340);
+      margin-bottom: cs(30);
+    }
+  }
+}
+
+.content-with-photo-revers {
+  flex-direction: row-reverse;
+
+  @include mobile {
+    flex-direction: column;
+  }
+}
+
+.grid-gallery {
+  width: 100%;
+
+  &__row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: vw(20);
+    @include notLast {
+      margin-bottom: vw(30);
+    }
+
+    @include tablet {
+      grid-gap: cs(20);
+      grid-template-columns: repeat(3, 1fr);
+      @include notLast {
+        margin-bottom: cs(20);
+      }
+    }
+  }
+
+  &__photo {
+    cursor: pointer;
+    object-fit: cover;
+    object-position: top;
+    aspect-ratio: 16/10;
+    width: 100%;
+    height: 100%;
+
+    @include tablet {
+      width: cs(308);
+      height: cs(205);
+    }
+
+    @include mobile {
+      width: cs(340);
+      height: cs(215);
+    }
+  }
+}

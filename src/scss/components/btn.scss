@@ -1,0 +1,45 @@
+.btn {
+  display: inline-block;
+  padding: rem(12) rem(27) rem(12);
+
+  color: var(--btn-color);
+  border: rem(2) solid var(--btn-border-color);
+  font-size: rem(16);
+  line-height: 1.36;
+  font-weight: 700;
+  text-align: center;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  background-color: transparent;
+
+  @include tablet {
+    font-size: cs(16);
+    padding: cs(12) cs(10) cs(12);
+  }
+
+  &--primary {
+    --btn-color: #{$deepCerise};
+    --btn-border-color: #{$deepCerise};
+
+    &:hover {
+      background-color: var(--btn-color);
+      color: $whiteBckg;
+    }
+  }
+
+  &--full {
+    display: block;
+    width: 100%;
+  }
+
+  &[disabled] {
+    --btn-color: #{$lineColor};
+    --btn-border-color: #{$lineColor};
+
+    &:hover {
+      background-color: transparent;
+      color: #{$lineColor};
+    }
+
+    cursor: not-allowed;
+  }
+}

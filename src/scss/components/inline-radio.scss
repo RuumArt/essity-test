@@ -1,0 +1,10 @@
+.inline-radio {
+  display: flex;
+  align-items: center;
+
+  &__item {
+    &:not(:last-child) {
+      margin-right: rem(50);
+    }
+  }
+}

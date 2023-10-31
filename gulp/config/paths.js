@@ -1,7 +1,7 @@
 import path from 'path';
 
 const projectDirName = path.basename(path.resolve());
-const buildFolder = `./dist`;
+const buildFolder = `./public`;
 const srcFolder = `./src`;
 
 const filePaths = {

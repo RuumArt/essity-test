@@ -4,22 +4,39 @@ body {
     touch-action: none;
   }
 }
-// Базовые анимации:
-// @import "keyframes";
 
-// Стили для полноэкранного блока:
-// @import "fullscreen";
-
-// Стили основного ограничивающего контейнера =================================
-/*
-* (i) Стили будут применяться ко 
-* всем классам содержащим *__container
-* Например header__container, main__container и т.д.
-*/
 [class*='__container'] {
-  max-width: rem($containerWidth + $mainOffset * 2);
   margin: 0 auto;
-  padding: 0 rem($mainOffset);
+  width: vw($bigDesktopWidthContainer);
+
+  @include desktop {
+    width: vw($largeDesktopWidthContainer);
+  }
+
+  @include mediumDesktop {
+    width: vw($desktopWidthContainer);
+  }
+
+  @include tablet {
+    width: auto;
+    padding: 0 cs($tabletContainer);
+  }
+
+  @include mobile {
+    padding: 0 cs($mobileContainer);
+  }
+}
+
+[class*='__block'] {
+  margin-bottom: vw($desktopMarginBlock);
+
+  @include tablet {
+    margin-bottom: cs($tabletMarginBlock);
+  }
+
+  @include mobile {
+    margin-bottom: cs($mobileMarginBlock);
+  }
 }
 // Стили отзывчивых картинок (IBG) ============================================
 [class*='-ibg'] {
@@ -42,6 +59,7 @@ body {
 }
 // Стили для обертки модальных окон ===========================================
 [class*='_overlay-bg'] {
+  background-color: rgba(0, 0, 0, 0.8);
   position: fixed;
   top: 0;
   left: 0;
@@ -66,12 +84,12 @@ body {
     visibility: visible;
   }
 }
-// Оболочка ===================================================================
-.wrapper {
+
+.root {
   display: flex;
   flex-direction: column;
   min-height: 100%;
-  overflow: hidden; // clip - если используется в проекте position: sticky
+  overflow: clip; // clip - если используется в проекте position: sticky
 }
 
 .page {
@@ -90,5 +108,371 @@ body {
 
   &_start {
     padding-top: rem($headerHeight);
+  }
+}
+
+.page-heading {
+  max-width: 98%;
+  display: flex;
+  flex-direction: column;
+
+  @include tablet {
+    max-width: 100%;
+  }
+
+  &__sub-title {
+    color: $navy;
+    @include fontType(36, 43, medium);
+    margin: vw(50) 0 vw(20);
+    width: vw(775);
+
+    @include tablet {
+      @include fontType(32, 42, medium);
+      margin: cs(70) 0 0;
+      width: cs(775);
+    }
+
+    @include mobile {
+      @include fontType(28, 36, medium);
+      margin: cs(40) 0 0;
+      width: auto;
+    }
+  }
+
+  &__description {
+    @include fontType(24, 31, medium);
+    width: vw(1045);
+    @include notFirst {
+      margin-top: vw(30);
+    }
+
+    @include mediumDesktop {
+      width: 100%;
+    }
+
+    @include tablet {
+      @include fontType(22, 29, medium);
+      @include notFirst {
+        margin-top: cs(30);
+      }
+    }
+
+    @include mobile {
+      @include fontType(20, 26, medium);
+      @include notFirst {
+        margin-top: cs(20);
+      }
+    }
+  }
+}
+
+.tablet-hidden {
+  @include tablet {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}
+
+.tablet-visible {
+  display: none !important;
+  visibility: hidden !important;
+
+  @include tablet {
+    display: block !important;
+    visibility: visible !important;
+  }
+}
+
+.mobile-hidden {
+  @include mobile {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}
+
+.mobile-visible {
+  display: none !important;
+  visibility: hidden !important;
+
+  @include mobile {
+    display: block !important;
+    visibility: visible !important;
+  }
+}
+
+.page-title {
+  color: $navy;
+  @include fontType(80, 92, medium);
+
+  span {
+    color: $navy;
+  }
+
+  @include tablet {
+    @include fontType(60, 69, medium);
+  }
+
+  @include mobile {
+    @include fontType(40, 50, medium);
+  }
+}
+
+.section-title {
+  color: $navy;
+  @include fontType(36, 43, medium);
+  margin-bottom: vw(30);
+
+  @include tablet {
+    margin-bottom: cs(30);
+    @include fontType(32, 42, medium);
+  }
+
+  @include mobile {
+    @include fontType(28, 36, medium);
+    margin-bottom: cs(20);
+  }
+}
+
+.block-title {
+  @include fontType(24, 31, medium);
+
+  @include mobile {
+    @include fontType(20, 26, medium);
+  }
+}
+
+.text {
+  @include fontType(18, 23, regular);
+}
+
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  margin: vw(50) 0;
+  width: max-content;
+
+  @include tablet {
+    margin: cs(50) 0;
+  }
+
+  @include mobile {
+    margin: cs(20) 0;
+  }
+
+  &__container {
+    position: relative;
+    overflow: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    @include mobile {
+      &::before {
+        content: '';
+        z-index: 1;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: cs(20);
+        background: linear-gradient(
+          268deg,
+          rgba(2, 0, 36, 0) 0%,
+          rgba(255, 255, 255, 0.013064600840336116) 12%,
+          rgba(255, 255, 255, 1) 61%
+        );
+      }
+
+      &::after {
+        content: '';
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: cs(20);
+        background: linear-gradient(
+          90deg,
+          rgba(2, 0, 36, 0) 0%,
+          rgba(255, 255, 255, 0.013064600840336116) 12%,
+          rgba(255, 255, 255, 1) 61%
+        );
+      }
+    }
+  }
+
+  &__link {
+    position: relative;
+    @include fontType(14, 18, regular);
+    border-bottom: 1px solid transparent;
+    transition: color 0.1s ease;
+    padding-bottom: vw(3);
+    @include notLast {
+      margin-right: vw(30);
+      &::after {
+        content: '';
+        @include arrow(28%, right, -20, '0E0E0E', right, 10, 7);
+      }
+    }
+
+    &:hover {
+      color: $deepCerise;
+      border-bottom: 1px solid $deepCerise;
+    }
+
+    @include tablet {
+      padding-bottom: cs(3);
+      margin-right: cs(30);
+      @include notLast {
+        margin-right: cs(30);
+        &::after {
+          @include arrow(30%, right, -20, '0E0E0E', right, 10, 7);
+        }
+      }
+    }
+
+    @include mobile {
+      @include fontType(12, 16, regular);
+      @include notLast {
+        &::after {
+          @include arrow(25%, right, -20, '0E0E0E', right, 10, 7);
+        }
+      }
+    }
+  }
+}
+
+.page-navigation {
+  display: flex;
+  flex-direction: row;
+
+  @include mobile {
+    width: max-content;
+  }
+
+  &__wrapper {
+    overflow: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__link {
+    color: $greyColor;
+    @include fontType(20, 26, medium);
+    position: relative;
+    border-bottom: 1px solid transparent;
+    padding-bottom: vw(5);
+    transition: color 0.3s, border-bottom 0.3s;
+    cursor: pointer;
+
+    @include notLast {
+      margin-right: vw(40);
+    }
+
+    @include tablet {
+      padding-bottom: cs(5);
+
+      @include notLast {
+        margin-right: cs(40);
+      }
+    }
+
+    @include mobile {
+      @include fontType(16, 21, medium);
+    }
+
+    &:hover {
+      color: $deepCerise;
+      border-bottom: 1px solid $deepCerise;
+    }
+  }
+}
+
+.active-panel {
+  display: block !important;
+}
+
+.tabs__panel {
+  display: none;
+}
+
+.mySwiper {
+  position: relative;
+}
+
+.swipe-icon {
+  position: absolute;
+  right: cs(10);
+  top: cs(10);
+  width: cs(28);
+  height: cs(32);
+  z-index: 2;
+  animation: reil 1.2s linear infinite;
+
+  @keyframes reil {
+    0% {
+      right: cs(10);
+    }
+    50% {
+      right: cs(30);
+    }
+    100% {
+      right: cs(10);
+    }
+  }
+}
+
+.mobile-margin-0 {
+  @include mobile {
+    margin: 0 !important;
+  }
+}
+
+h1, .h1 {
+  font-size: rem(80);
+  font-weight: 500;
+  line-height: 1.155;
+
+  @include tablet {
+    font-size: cs(60);
+  }
+
+  @include mobile {
+    font-size: cs(40);
+    line-height: 1.25;
+  }
+}
+
+h2, .h2 {
+  font-size: rem(36);
+  font-weight: 500;
+  line-height: 1.3;
+
+  @include desktop {
+    font-size: rem(24);
+  }
+
+  @include tablet {
+    font-size: cs(24);
+  }
+
+  @include mobile {
+    font-size: cs(24);
+  }
+}
+
+h3, .h3 {
+  font-size: rem(24);
+  font-weight: 500;
+  line-height: 1.3;
+
+  @include tablet {
+    font-size: cs(22);
+  }
+
+  @include mobile {
+    font-size: cs(16);
   }
 }

@@ -1,0 +1,166 @@
+.students-history__breadcrumbs {
+  margin-bottom: vw(36);
+
+  @include tablet {
+    margin-top: cs(60);
+    margin-bottom: cs(30);
+  }
+
+  @include mobile {
+    margin-top: cs(19);
+    margin-bottom: cs(18);
+  }
+}
+.story {
+  &__container {
+    margin-bottom: vw(67);
+
+    @include tablet {
+      margin-bottom: cs(27);
+    }
+
+    @include mobile {
+      margin-bottom: 0;
+    }
+  }
+
+  &__title {
+    @include tablet {
+      width: cs(961);
+    }
+    @include mobile {
+      width: cs(360);
+
+      h1 {
+        width: cs(270);
+      }
+    }
+  }
+
+  &__description {
+    margin-top: vw(65);
+    @include fontType(24, 31, medium);
+
+    @include tablet {
+      margin-top: cs(35);
+    }
+
+    @include mobile {
+      margin-top: cs(10);
+    }
+  }
+}
+
+.students-history {
+  &__section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: vw(50);
+
+    @include tablet {
+      margin-top: cs(60);
+    }
+
+    @include mobile {
+      flex-direction: column;
+      margin-top: cs(25);
+    }
+  }
+
+  &__block {
+    margin-bottom: vw(34);
+
+    @include tablet {
+      margin-bottom: cs(31);
+    }
+
+    @include mobile {
+      margin-bottom: cs(36);
+    }
+  }
+
+  &__question {
+    color: $navy;
+    @include fontType(24, 31, medium);
+    margin-bottom: vw(13);
+
+    @include tablet {
+      margin-bottom: cs(16);
+    }
+
+    @include mobile {
+      @include fontType(20, 26, medium);
+      margin-bottom: cs(14);
+    }
+  }
+}
+
+.student-info {
+  width: 50%;
+
+  @include tablet {
+    width: cs(961);
+  }
+  @include mobile {
+    width: auto;
+  }
+
+  &__title {
+    margin-bottom: vw(21);
+
+    @include tablet {
+      margin-bottom: cs(60);
+    }
+
+    @include mobile {
+      margin-bottom: cs(45);
+    }
+  }
+
+  &__avatar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    p {
+      @include tablet {
+        width: cs(467);
+      }
+    }
+  }
+}
+
+.avatar-container {
+  position: relative;
+  width: 45%;
+  height: vw(674);
+  overflow: hidden;
+
+  @include mediumDesktop {
+    position: sticky;
+    top: vw(30);
+  }
+
+  @include tablet {
+    width: cs(467);
+    height: cs(475);
+  }
+
+  @include mobile {
+    width: cs(340);
+    height: cs(340);
+  }
+}
+
+.avatar {
+  position: absolute;
+  object-fit: cover;
+  object-position: 0 21%;
+  width: 100%;
+  height: 100%;
+
+  @include tablet {
+    object-position: 0 17%;
+  }
+}

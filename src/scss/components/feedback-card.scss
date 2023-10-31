@@ -1,0 +1,14 @@
+.feedback-card {
+  &__title {
+    margin-bottom: rem(30);
+    color: $navy;
+
+    @include tablet {
+      margin-bottom: cs(30);
+    }
+
+    @include mobile {
+      margin-bottom: cs(20);
+    }
+  }
+}

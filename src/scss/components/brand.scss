@@ -1,0 +1,226 @@
+.brand-page {
+  &__welcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: vw(610);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+      url('../../images/hands2.jpeg') no-repeat center 60% / cover;
+
+    @include tablet {
+      height: cs(640);
+    }
+
+    @include mobile {
+      height: cs(370);
+      background-position-x: 55%;
+    }
+  }
+
+  &__welcome-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: vw(90);
+    width: vw($bigDesktopWidthContainer);
+    margin: 0 auto;
+
+    @include desktop {
+      width: vw($largeDesktopWidthContainer);
+    }
+
+    @include mediumDesktop {
+      width: vw($desktopWidthContainer);
+    }
+
+    @include tablet {
+      margin: 0;
+      width: auto;
+      padding-bottom: cs(45);
+    }
+
+    @include mobile {
+      padding-bottom: cs(30);
+    }
+  }
+
+  &__content-photo {
+    @include mobile {
+      height: cs(230);
+    }
+  }
+
+  &__heading {
+    width: vw(1080);
+    @include tablet {
+      width: cs(654);
+    }
+    @include mobile {
+      width: auto;
+    }
+  }
+
+  &__logo {
+    width: vw(165);
+    height: vw(90);
+
+    @include tablet {
+      width: cs(165);
+      height: cs(90);
+    }
+  }
+
+  &__breadcrumbs {
+    padding-top: vw(50);
+    width: vw($bigDesktopWidthContainer);
+    margin: 0 auto;
+
+    @include desktop {
+      width: vw($largeDesktopWidthContainer);
+    }
+
+    @include mediumDesktop {
+      width: vw($desktopWidthContainer);
+    }
+
+    @include tablet {
+      padding: cs(60) cs(32) 0;
+    }
+
+    @include mobile {
+      padding: cs(30) cs(25) 0;
+    }
+
+    .breadcrumbs__link {
+      color: $whiteColor;
+
+      &::after {
+        @include arrow(35%, right, -20, 'e9ebf6', right, 10, 7);
+      }
+
+      @include tablet {
+        &::after {
+          @include arrow(30%, right, -20, 'e9ebf6', right, 10, 7);
+        }
+      }
+
+      @include mobile {
+        &::after {
+          @include arrow(25%, right, -20, 'e9ebf6', right, 10, 7);
+        }
+      }
+    }
+  }
+
+  &__card-btn {
+    margin: 0;
+  }
+
+  &__sub-title {
+    margin: vw(20) 0 vw(10);
+    @include fontType(22, 23, semiBold);
+
+    @include tablet {
+      margin: cs(20) 0 cs(10);
+      @include fontType(18, 23, semiBold);
+    }
+  }
+
+  &__content-text {
+    margin: 0;
+    @include fontType(24, 31, medium);
+
+    @include tablet {
+      @include fontType(22, 29, medium);
+    }
+
+    @include mobile {
+      @include fontType(20, 26, medium);
+    }
+  }
+
+  &__content-btn {
+    margin-top: vw(10);
+
+    @include tablet {
+      margin-top: cs(10);
+    }
+
+    @include mobile {
+      margin-bottom: cs(30);
+
+      &::after {
+        width: cs(15);
+        height: cs(10);
+      }
+    }
+  }
+
+  &__page-title {
+    color: $whiteColor;
+    @include mediumDesktop {
+      @include fontType(60, 69, medium);
+      width: 90%;
+    }
+
+    @include tablet {
+      width: 100%;
+    }
+
+    @include mobile {
+      @include fontType(32, 41, medium);
+    }
+  }
+
+  &__page-description {
+    margin-bottom: vw(3);
+    color: $whiteColor;
+    @include fontType(14, 18, regular);
+
+    @include mediumDesktop {
+      margin-bottom: cs(20);
+    }
+
+    @include mobile {
+      margin-top: cs(20);
+      @include fontType(12, 16, medium);
+    }
+  }
+}
+
+.brand-social {
+  &__wrapper {
+    display: flex;
+
+    @include mobile {
+      flex-direction: column;
+    }
+  }
+
+  &__link {
+    padding: vw(30);
+    display: flex;
+    align-items: center;
+    @include tablet {
+      padding: cs(30);
+    }
+  }
+
+  &__ok {
+    width: vw(260);
+    height: vw(55);
+    @include tablet {
+      width: cs(260);
+      height: cs(55);
+    }
+  }
+
+  &__vk {
+    width: vw(265);
+    height: vw(45);
+    @include tablet {
+      width: cs(265);
+      height: cs(45);
+    }
+  }
+}

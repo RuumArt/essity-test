@@ -1,0 +1,119 @@
+.documentaion-page {
+  margin-bottom: vw(60);
+
+  @include tablet {
+    margin-bottom: cs(60);
+  }
+
+  &__page-title {
+    margin-top: cs(30);
+  }
+
+  &__cities {
+    display: grid;
+    grid-template-columns: repeat(3, 32%);
+    grid-gap: vw(30);
+
+    @include tablet {
+      grid-template-columns: repeat(3, 30%);
+      grid-gap: cs(40);
+    }
+
+    @include mobile {
+      grid-template-columns: auto;
+    }
+  }
+}
+
+.documentaion-city {
+  width: 100%;
+  &__item {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: auto;
+    padding-bottom: cs(20);
+    border-bottom: 1px solid $lineColor;
+    margin-bottom: vw(15);
+
+    &:hover {
+      .text-btn {
+        &::after {
+          left: vw(125);
+        }
+      }
+    }
+
+    @include tablet {
+      width: cs(308);
+      flex-direction: column;
+      padding-bottom: cs(15);
+      margin-bottom: cs(15);
+    }
+  }
+}
+
+.document-item {
+  display: flex;
+  flex-direction: column;
+
+  @include tablet {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__text {
+    @include fontType(24, 31, regular);
+
+    @include mediumDesktop {
+      @include fontType(18, 23, regular);
+    }
+
+    @include tablet {
+      @include fontType(16, 21, regular);
+    }
+  }
+
+  &__button {
+    margin: 0 vw(30) 0 0;
+    width: auto;
+
+    &::after {
+      left: vw(110);
+    }
+
+    &:hover {
+      &::after {
+        left: vw(120);
+      }
+    }
+
+    @include mediumDesktop {
+      @include fontType(18, 23, bold);
+    }
+
+    @include tablet {
+      margin: cs(5) cs(30) 0 0;
+
+      &::after {
+        top: 20%;
+      }
+
+      &:hover {
+        &::after {
+          left: cs(120);
+        }
+      }
+    }
+
+    @include mobile {
+      @include fontType(18, 23, bold);
+
+      &::after {
+        top: 33%;
+      }
+    }
+  }
+}

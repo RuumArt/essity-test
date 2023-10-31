@@ -1,0 +1,127 @@
+.burger-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+  pointer-events: none;
+  transition: all 0.3s;
+
+  &__left {
+    position: absolute;
+    width: 50%;
+    height: 100vh;
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  &__wrapper {
+    overflow-y: scroll;
+    width: 50%;
+    position: relative;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: $navy;
+    z-index: 2;
+    transform: translate(200%, 0);
+    transition: transform 0.5s ease;
+    padding: cs(38) cs(25) cs(40);
+
+    @include mobile {
+      width: 100%;
+      transform: translate(100%, 0);
+    }
+  }
+
+  &__icon {
+    cursor: pointer;
+    width: cs(24);
+    height: cs(17);
+  }
+
+  &__logo {
+    width: cs(146);
+    height: cs(35);
+    margin-bottom: cs(25);
+  }
+
+  &__content {
+    position: relative;
+  }
+
+  &__cross {
+    cursor: pointer;
+    top: cs(10);
+    right: 0;
+    position: absolute;
+    width: cs(17);
+    height: cs(17);
+  }
+
+  &__button {
+    width: 100%;
+    margin: 0;
+    color: $whiteColor;
+    background: $navy;
+    border: 2px solid $whiteColor;
+    margin-top: cs(40);
+
+    &:hover {
+      color: $navy;
+      background-color: $whiteColor;
+    }
+  }
+}
+
+.menu-open {
+  transform: translate(100%, 0);
+  pointer-events: all;
+
+  @include mobile {
+    transform: translate(0, 0);
+  }
+}
+
+.burger-dropdown {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: cs(15);
+
+  &__title {
+    width: max-content;
+    cursor: pointer;
+    position: relative;
+    color: $whiteColor;
+    @include fontType(24, 33, bold);
+    margin-bottom: cs(15);
+
+    &::after {
+      content: '';
+      @include arrow(30%, right, -30, $whiteArrow, bottom, 13, 13);
+    }
+  }
+
+  &__links {
+    display: none;
+  }
+
+  &__link {
+    margin-bottom: cs(15);
+
+    a {
+      color: $whiteColor;
+      @include fontType(20, 23, regular);
+    }
+
+    p {
+      color: $whiteColor;
+      @include fontType(24, 25, regular);
+    }
+  }
+}
+
+.burger-open {
+  background: rgba(29, 21, 16, 0.5);
+}

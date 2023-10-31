@@ -1,0 +1,65 @@
+.news-page {
+  &__wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: vw(20);
+
+    @include tablet {
+      grid-gap: cs(20);
+    }
+
+    @include mobile {
+      grid-template-columns: auto;
+    }
+  }
+
+  &__card {
+    width: 100%;
+    margin-bottom: vw(40);
+
+    &:hover {
+      .text-btn {
+        &::after {
+          left: vw(125);
+        }
+      }
+
+      img {
+        transform: scale(1.2);
+      }
+    }
+
+    @include tablet {
+      margin-bottom: cs(40);
+      width: cs(307);
+
+      &:hover {
+        .text-btn {
+          &::after {
+            left: cs(125);
+          }
+        }
+      }
+    }
+    @include mobile {
+      @include notLast {
+        margin-bottom: cs(30);
+      }
+      width: cs(335);
+    }
+  }
+}
+
+.news-card {
+  &__sub-title {
+    @include fontType(22, 23, semiBold);
+
+    @include tablet {
+      @include fontType(16, 21, semiBold);
+    }
+  }
+
+  &__text {
+    @include fontType(14, 18, medium);
+  }
+}

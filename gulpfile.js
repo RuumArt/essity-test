@@ -47,7 +47,7 @@ const fonts = gulp.series(otfToTtf, ttfToWoff, fontStyle);
 /**
  * Параллельные задачи в режиме разработки
  */
-const devTasks = gulp.parallel(copy, copyRootFiles, html, scss, js, images);
+const devTasks = gulp.parallel(copy, copyRootFiles, html, scss, js, images, createSvgSprite);
 
 /**
  * Основные задачи

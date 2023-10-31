@@ -1,0 +1,181 @@
+.press-release-page {
+  &__page-title {
+    margin-bottom: vw(25);
+
+    @include tablet {
+      margin-bottom: cs(45);
+    }
+
+    @include mobile {
+      width: auto;
+      margin-bottom: cs(35);
+      h1 {
+        @include fontType(35, 44, medium);
+      }
+    }
+  }
+}
+
+.press-release {
+  width: 55%;
+
+  @include tablet {
+    width: auto;
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    @include tablet {
+      flex-direction: column;
+    }
+  }
+
+  &__date {
+    color: $greyColor;
+    @include arialFont(16, 21);
+    margin-bottom: vw(20);
+
+    @include tablet {
+      @include arialFont(12, 14);
+      margin-bottom: cs(10);
+    }
+  }
+
+  &__text {
+    @include arialFont(18, 23);
+    @include notLast {
+      margin-bottom: vw(20);
+    }
+
+    @include tablet {
+      @include notLast {
+        margin-bottom: cs(23);
+      }
+    }
+
+    @include mobile {
+      @include arialFont(16, 21);
+      @include notLast {
+        margin-bottom: cs(21);
+      }
+    }
+  }
+
+  &__download-btn {
+    margin-top: vw(20);
+    background: none;
+    color: $deepCerise;
+    @include fontType(24, 31, bold);
+    &:hover {
+      text-decoration: underline;
+    }
+
+    @include tablet {
+      margin-top: cs(25);
+      @include fontType(20, 26, bold);
+    }
+
+    @include mobile {
+      margin-top: cs(15);
+    }
+  }
+}
+
+.contacts {
+  margin-top: vw(20);
+
+  @include tablet {
+    margin-top: cs(60);
+  }
+
+  @include mobile {
+    margin-top: cs(40);
+  }
+
+  &__title {
+    color: $navy;
+    @include fontType(28, 36, medium);
+    margin-bottom: vw(30);
+
+    @include tablet {
+      @include fontType(24, 28, medium);
+      margin-bottom: cs(30);
+    }
+
+    @include mobile {
+      @include fontType(20, 26, medium);
+      margin-bottom: cs(20);
+    }
+  }
+
+  &__small-title {
+    @include fontType(22, 24, medium);
+    margin-bottom: vw(20);
+
+    @include tablet {
+      margin-bottom: cs(20);
+    }
+
+    @include mobile {
+      @include fontType(20, 26, medium);
+    }
+  }
+
+  &__author-name {
+    color: $navy;
+    @include fontType(18, 19, medium);
+
+    @include mobile {
+      @include fontType(16, 17, medium);
+    }
+  }
+
+  &__author-contacts {
+    margin-top: vw(15);
+
+    @include tablet {
+      margin-top: cs(15);
+    }
+
+    @include mobile {
+      margin-top: cs(8);
+    }
+  }
+
+  &__modal-btn {
+    background: none;
+    color: $navy;
+    align-self: flex-end;
+    margin-top: vw(-35);
+    @include fontType(22, 24, medium);
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    @include tablet {
+      margin-top: cs(-35);
+    }
+
+    @include mobile {
+      @include fontType(20, 26, medium);
+      margin-top: 0;
+      align-self: flex-start;
+    }
+  }
+}
+
+.author-contacts {
+  display: flex;
+  flex-direction: column;
+
+  &__info {
+    @include arialFont(15, 19);
+
+    @include mobile {
+      @include arialFont(12, 16);
+    }
+  }
+}

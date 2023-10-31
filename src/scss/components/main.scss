@@ -1,0 +1,183 @@
+.content {
+  &__item {
+    padding: cs(70) 0 cs($desktopMarginBlock);
+    background: $whiteBckg;
+
+    @include tablet {
+      padding: cs(60) cs(32) cs($tabletMarginBlock);
+    }
+
+    @include mobile {
+      padding: cs(30) cs(25) cs($mobileMarginBlock);
+    }
+  }
+
+  &__item-wrapper {
+    margin: 0 auto;
+    width: vw($bigDesktopWidthContainer);
+
+    @include desktop {
+      width: vw($largeDesktopWidthContainer);
+    }
+
+    @include mediumDesktop {
+      width: vw($desktopWidthContainer);
+    }
+
+    @include tablet {
+      width: auto;
+    }
+  }
+}
+
+.greyBg {
+  background: $greyBckg;
+}
+
+.welcome {
+  height: vw(684);
+  background-image: url('../../images/main-bg.jpg');
+  background-size: cover;
+  background-position: 0 75%;
+  padding: vw(125) 0;
+
+  @include tablet {
+    height: cs(640);
+    padding: cs(160) cs(30);
+    background-position: 75%;
+  }
+
+  @include mobile {
+    height: cs(370);
+    padding: cs(30) cs(25);
+    background-size: cover;
+    background-position: right;
+  }
+
+  &__page-title {
+    margin: 0 auto;
+    width: vw($bigDesktopWidthContainer);
+
+    @include desktop {
+      width: vw($largeDesktopWidthContainer);
+    }
+
+    @include mediumDesktop {
+      width: vw($desktopWidthContainer);
+    }
+  }
+}
+
+.about-descriptions {
+  margin-top: vw(87);
+
+  @include tablet {
+    margin-top: cs(60);
+  }
+
+  @include mobile {
+    margin-top: cs(40);
+  }
+}
+
+.main-info {
+  &__logo-wrapper {
+    width: 32.1%;
+    height: 100%;
+
+    @include tablet {
+      width: cs(327);
+      height: cs(78);
+    }
+
+    @include mobile {
+      width: cs(241);
+      height: cs(58);
+    }
+  }
+  &__logo {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    @include mobile {
+      flex-wrap: wrap;
+    }
+  }
+
+  &__description {
+    max-width: vw(775);
+
+    @include mediumDesktop {
+      max-width: vw(500);
+    }
+
+    @include tablet {
+      max-width: cs(465);
+    }
+
+    @include mobile {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: cs(30);
+    }
+  }
+
+  &__text {
+    @include fontType(24, 31, medium);
+
+    @include tablet {
+      @include fontType(22, 29, medium);
+    }
+
+    @include mobile {
+      @include fontType(20, 26, medium);
+    }
+  }
+}
+
+.partners-logo {
+  @include tablet {
+    margin: cs($tabletMarginBlock) 0 0;
+  }
+
+  @include mobile {
+    margin-top: cs(40);
+  }
+
+  &__title {
+    margin-bottom: 0;
+  }
+
+  &__logo {
+    width: 71%;
+    aspect-ratio: 1/1;
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    @include tablet {
+      width: cs(181);
+      height: cs(181);
+    }
+
+    @include mobile {
+      width: cs(160);
+      height: cs(160);
+    }
+  }
+}
+
+.mobile-center {
+  @include mobile {
+    justify-content: center;
+  }
+}

@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html lang="ru">
-  @@include('html/head.html', {
-    'title': 'Главная'
-  })
+  @@include('html/head.html', { 'title': 'Главная' })
   <body>
-    <div class="wrapper">
+    <div class="root">
       @@include('html/header.html', {})
-      <main class="page">
-        <div data-observ></div>
-        
-      </main>
+      <main class="page">@@include('html/main.html', {})</main>
       @@include('html/footer.html', {})
     </div>
-    @@include('html/script.html', {})
+    @@include('html/burgerMenu.html', {}) @@include('html/script.html', {})
   </body>
-</html> 
+</html>

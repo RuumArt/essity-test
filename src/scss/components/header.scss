@@ -1,72 +1,179 @@
-// =====================================================================================================================
 .header {
   width: 100%;
 
-  &.sticky {
-    // ..стили для липкого хедера
-  }
-
-  // .header__container
   &__container {
-    height: rem($headerHeight);
+    height: vw($headerHeight);
     display: flex;
     align-items: center;
+    justify-content: space-between;
+
+    @include tablet {
+      padding: 0 cs(30);
+      height: cs($headerTabletHeight);
+    }
+  }
+
+  &__logo-img {
+    width: vw(126);
+    height: vw(30);
+
+    @include tablet {
+      width: cs(126);
+      height: cs(30);
+    }
   }
 }
-// =====================================================================================================================
 
-// Burger
-/*
-.icon-menu {
-  display: none;
+.menu {
+  display: flex;
+  align-items: center;
 
-  @include media(767) {
-    display: block;
+  &__button {
+    margin-left: vw(75);
+    width: vw(180);
+  }
+
+  &__list {
+    display: flex;
+  }
+
+  &__item {
     position: relative;
-    width: rem(30);
-    height: rem(18);
-    cursor: pointer;
-    z-index: 5;
-
-    span,
-    &::before,
-    &::after {
-      content: "";
-      transition: all 300ms ease 0ms;
-      right: 0;
-      position: absolute;
-      width: 100%;
-      height: rem(2);
-      background-color: #000;
+    @include notLast {
+      margin-right: vw(30);
     }
+    padding: vw(24) vw(30) vw(24) 0;
 
-    &::before {
-      top: 0;
-    }
-
-    &::after {
-      bottom: 0;
-    }
-
-    span {
-      top: calc(50% - rem(1));
-    }
-
-    .menu-open & {
-      span {
-        width: 0;
+    @include tablet {
+      @include notLast {
+        margin-right: cs(60);
       }
+      padding: cs(24) 0;
+    }
+  }
+}
 
-      &::before {
-        top: calc(50% - rem(1));
-        transform: rotate(-45deg);
-      }
+.pink-button {
+  @include fontType(16, 22, bold);
+  color: $deepCerise;
+  background-color: $whiteBckg;
+  height: vw(46);
+  border: 2px solid $deepCerise;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+
+  &:hover {
+    color: $whiteBckg;
+    background-color: $deepCerise;
+  }
+
+  @include tablet {
+    height: cs(46);
+  }
+}
+
+.menu-dropdown {
+  cursor: pointer;
+
+  &:hover {
+    .menu-dropdown__title {
+      color: $deepCerise;
 
       &::after {
-        bottom: calc(50% - rem(1));
-        transform: rotate(45deg);
+        @include arrow(45%, right, 10, $pinkArrow, top, 10, 7);
+      }
+    }
+
+    .menu-dropdown__wrapper {
+      display: block;
+    }
+  }
+
+  &__title {
+    color: $navy;
+    @include fontType(16, 22, bold);
+    transition: color 0.3s ease;
+    width: 130%;
+
+    &::after {
+      content: '';
+      @include arrow(45%, right, 10, $blueArrow, bottom, 10, 7);
+    }
+  }
+
+  &__wrapper {
+    display: none;
+    position: absolute;
+    background: #ffffff;
+    z-index: 1;
+    width: vw(285);
+    left: -10%;
+    top: vw($headerHeight);
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5px 6px 50px rgba(0, 0, 0, 0.1);
+  }
+
+  &__item {
+    position: relative;
+    padding: vw(14);
+    transition: background-color 0.3s;
+    @include fontType(16, 18, regular);
+
+    &:hover {
+      background-color: #f7f7f7;
+
+      .more-items {
+        display: flex;
       }
     }
   }
 }
-*/
+
+.more-items {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: vw(285);
+  width: vw(260);
+  flex-direction: column;
+  background: white;
+  box-shadow: 5px 6px 50px rgba(0, 0, 0, 0.1);
+}
+
+.with-more-items {
+  &::after {
+    content: '';
+    @include arrow(40%, right, 10, $greyArrow, right, 10, 7);
+  }
+
+  &:hover {
+    &::after {
+      @include arrow(40%, right, 10, $darkGreyArrow, right, 10, 7);
+    }
+  }
+}
+
+.rotate180 {
+  &::after {
+    transform: rotate(180deg) !important;
+  }
+}
+
+.padding0 {
+  padding: 0;
+}
+
+.header-dpdwn-open {
+  color: $deepCerise;
+
+  &::after {
+    @include arrow(30%, right, -20, $pinkArrow, top, 10, 7);
+  }
+}
+
+.max-content-width {
+  width: max-content;
+}

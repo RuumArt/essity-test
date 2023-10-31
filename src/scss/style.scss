@@ -3,13 +3,13 @@
 /** Подключение шрифтов локально из папки "./src/fonts" */
 @import 'config/fonts';
 
-/** Подключение переменных */
-@import 'config/vars';
-
 /** Подключение sass function и mixins и extends стилей */
 @import 'config/functions';
 @import 'config/mixins';
 @import 'config/patternSelectors';
+
+/** Подключение переменных */
+@import 'config/vars';
 
 /** Обнуление */
 @import 'config/reset';
@@ -19,7 +19,7 @@
 	* раскомментировать для использования
 	*/
 // @import 'libs/aos';
-// @import 'libs/swiper';
+@import 'libs/swiper';
 
 /** Подключение custom scrollbar для всего сайта */
 @import 'config/scrollbar';
@@ -30,6 +30,47 @@
 /** БЕМ блоки используемые во всё проекте */
 @import 'config/common';
 
+/* Типографика */
+@import 'config/typo';
+
 /** Подключение стилей отдельных блоков и секций */
 @import 'components/header';
 @import 'components/footer';
+@import 'components/icon';
+@import 'components/card';
+@import 'components/main';
+@import 'components/btn';
+@import 'components/burgerMenu';
+@import 'components/production-gallery-popup';
+@import 'components/about-company';
+@import 'components/production';
+@import 'components/documentation';
+@import 'components/activity';
+@import 'components/professional-hygiene';
+@import 'components/brands';
+@import 'components/brand';
+@import 'components/career';
+@import 'components/news';
+@import 'components/students';
+@import 'components/stories';
+@import 'components/students-history';
+@import 'components/news-post';
+@import 'components/progress';
+@import 'components/press-release';
+@import 'components/press-releases';
+@import 'components/page-header';
+@import 'components/page-section';
+@import 'components/feedback-list';
+@import 'components/feedback-card';
+@import 'components/contacts-block';
+@import 'components/form';
+@import 'components/form-control';
+@import 'components/file-input';
+@import 'components/inline-radio';
+@import 'components/custom-checkbox';
+@import 'components/custom-select';
+@import 'components/custom-radio';
+@import 'components/address-input';
+@import 'components/r-image';
+@import 'components/tooltip';
+@import 'components/modal';

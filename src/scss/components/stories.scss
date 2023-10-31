@@ -1,0 +1,22 @@
+.stories-page {
+  &__page-heading {
+    margin-bottom: vw(60);
+
+    @include tablet {
+      margin-bottom: cs(60);
+    }
+  }
+
+  &__tabs {
+    margin: vw(20) 0 vw(60);
+
+    @include tablet {
+      margin: 0 0 cs(40);
+      padding: 0;
+    }
+  }
+
+  &__page-title {
+    margin-top: cs(30);
+  }
+}

@@ -1,0 +1,153 @@
+.about-company {
+  &__item {
+    margin-bottom: vw($desktopMarginBlock);
+
+    @include tablet {
+      margin-bottom: cs($tabletMarginBlock);
+    }
+
+    @include mobile {
+      margin-bottom: cs($mobileMarginBlock);
+    }
+  }
+
+  &__page-title {
+    margin-top: cs(20);
+  }
+
+  &__page-nav {
+    margin: vw(30) 0 vw(60);
+    @include tablet {
+      margin: cs(30) 0 cs(60);
+    }
+  }
+
+  &__description {
+    @include fontType(24, 31, medium);
+    max-width: vw(1043);
+    width: 100%;
+
+    @include notLast {
+      margin-bottom: vw(30);
+    }
+
+    @include tablet {
+      max-width: cs(1043);
+      width: 100%;
+      margin-top: cs(40);
+    }
+
+    @include mobile {
+      @include fontType(20, 26, medium);
+      width: 96%;
+    }
+  }
+}
+
+.fixed-navigation {
+  opacity: 0;
+  position: fixed;
+  pointer-events: none;
+  left: 27%;
+  bottom: vw(50);
+  width: vw(813);
+  padding: vw(18) vw(30);
+  background-color: rgba(255, 255, 255, 0.75);
+  transition: opacity 0.5s;
+
+  @include tablet {
+    left: 10%;
+    bottom: cs(40);
+    width: cs(813);
+    padding: cs(18) cs(30);
+  }
+
+  @include media(1023) {
+    display: none;
+  }
+
+  &__link {
+    color: $blackColor;
+  }
+}
+
+.active-nav-link {
+  color: $deepCerise;
+  border-bottom: 1px solid $deepCerise;
+}
+
+.worth {
+  display: flex;
+  justify-content: space-between;
+
+  @include mobile {
+    flex-direction: column;
+  }
+
+  &__subtitle {
+    @include arialFont(18, 23);
+    margin-bottom: cs($marginElement);
+
+    @include mobile {
+      @include arialFont(16, 21);
+    }
+  }
+
+  &__left {
+    width: 39%;
+
+    @include mediumDesktop {
+      width: 45%;
+    }
+
+    @include tablet {
+      width: cs(467);
+    }
+
+    @include mobile {
+      width: auto;
+    }
+  }
+
+  &__info-wrapper {
+    margin-bottom: vw($marginElement);
+    width: 100%;
+
+    @include tablet {
+      margin-bottom: cs($marginElement);
+      width: 100%;
+    }
+  }
+
+  &__info-title {
+    color: $navy;
+    @include fontType(24, 28, medium);
+    margin-bottom: vw(10);
+    @include tablet {
+      margin-bottom: cs(10);
+    }
+  }
+
+  &__info-text {
+    @include arialFont(16, 21);
+    @include mobile {
+      @include arialFont(14, 18);
+    }
+  }
+
+  &__photo {
+    width: 49%;
+    height: 100%;
+    object-fit: cover;
+
+    @include tablet {
+      width: cs(467);
+      height: cs(416);
+    }
+
+    @include mobile {
+      width: cs(340);
+      height: cs(227);
+    }
+  }
+}

@@ -1,11 +1,112 @@
 <header class="header">
   <div class="header__container">
-    <a href="#" class="header__logo logo"></a>
-    <nav class="header__menu menu">
+    <a href="/" class="header__logo">
+      <img src="../images/logo.png" class="header__logo-img" alt="logo" />
+    </a>
+    <nav class="header__menu menu tablet-hidden">
       <ul class="menu__list">
-        <li class="menu__item"><a href="#" class="menu__link">Link</a></li>
+        <li class="menu__item menu-dropdown">
+          <p class="menu-dropdown__title">О компании</p>
+          <div class="menu-dropdown__wrapper">
+            <div class="menu-dropdown__list">
+              <a href="/about-company.html" class="menu-dropdown__item"
+                >О компании</a
+              >
+              <a href="/progress.html" class="menu-dropdown__item"
+                >Устойчивое развитие</a
+              >
+              <div class="menu-dropdown__item with-more-items">
+                <a href="/production.html" class="menu-dropdown__item padding0"
+                  >Наше производство</a
+                >
+                <div class="more-items">
+                  <a href="/production.html" class="menu-dropdown__item"
+                    >Производство в г. Советск</a
+                  >
+                  <a href="/production.html" class="menu-dropdown__item"
+                    >Производство в г. Венев</a
+                  >
+                  <a href="/production.html" class="menu-dropdown__item"
+                    >Производство в г. Светогорск</a
+                  >
+                </div>
+              </div>
+              <a href="/documentation.html" class="menu-dropdown__item"
+                >Обязательная документация</a
+              >
+              <div class="menu-dropdown__item with-more-items">
+                <a href="/activity.html" class="menu-dropdown__item padding0"
+                  >Деятельность компании</a
+                >
+                <div class="more-items">
+                  <a href="/personal-hygiene.html" class="menu-dropdown__item"
+                    >Личная гигиена</a
+                  >
+                  <a href="#" class="menu-dropdown__item"
+                    >Потребительская бумага</a
+                  >
+                  <a
+                    href="/professional-hygiene.html"
+                    class="menu-dropdown__item"
+                    >Профессиональная гигиеническая продукция</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="menu__item menu-dropdown">
+          <p class="menu-dropdown__title">Наши бренды</p>
+          <div class="menu-dropdown__wrapper max-content-width">
+            <div class="menu-dropdown__list">
+              <a href="/brands.html" class="menu-dropdown__item"
+                >Бренды Essity</a
+              >
+              <a href="/brand.html" class="menu-dropdown__item">Zewa</a>
+              <a href="/brand.html" class="menu-dropdown__item">Tork</a>
+              <a href="/brand.html" class="menu-dropdown__item">TENA</a>
+              <a href="/brand.html" class="menu-dropdown__item">Libresse</a>
+            </div>
+          </div>
+        </li>
+        <li class="menu__item menu-dropdown">
+          <p class="menu-dropdown__title">Карьера</p>
+          <div class="menu-dropdown__wrapper">
+            <div class="menu-dropdown__list">
+              <a href="/career.html" class="menu-dropdown__item"
+                >Работа в Essity</a
+              >
+              <a href="/students.html" class="menu-dropdown__item"
+                >Молодым специалистам
+              </a>
+              <a href="/stories.html" class="menu-dropdown__item"
+                >Истории успеха</a
+              >
+            </div>
+          </div>
+        </li>
+        <li class="menu__item menu-dropdown">
+          <p class="menu-dropdown__title">Пресса</p>
+          <div class="menu-dropdown__wrapper">
+            <div class="menu-dropdown__list">
+              <a href="/press-releases.html" class="menu-dropdown__item"
+                >Пресс-релизы</a
+              >
+              <a href="/news.html" class="menu-dropdown__item"
+                >Новости компании</a
+              >
+            </div>
+          </div>
+        </li>
       </ul>
+      <button class="menu__button pink-button">Обратная связь</button>
     </nav>
-    <!-- @@include('./iconMenu.html', {}) -->
+    <div id="burger-button" class="burger-button tablet-visible">
+      <img
+        src="../images/icons/burger.png"
+        alt="burger-menu"
+        class="burger-menu__icon"
+      />
+    </div>
   </div>
 </header>

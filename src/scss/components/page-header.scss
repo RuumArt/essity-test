@@ -1,0 +1,28 @@
+.page-header {
+  padding-bottom: rem(50);
+
+  @include tablet {
+    padding-bottom: cs(50);
+  }
+
+  @include mobile {
+    padding-bottom: cs(40);
+  }
+
+  &__title {
+    color: $navy;
+  }
+
+  &__text {
+    margin-top: rem(50);
+    max-width: rem(1185);
+
+    @include tablet {
+      margin-top: cs(50);
+    }
+
+    @include mobile {
+      margin-top: cs(20);
+    }
+  }
+}

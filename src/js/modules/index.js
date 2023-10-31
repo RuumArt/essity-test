@@ -1,9 +1,23 @@
-import toggleBodyLock from './../helpers/toggleBodyLock';
-import { html, firstScreen, header } from './../helpers/elementsNodeList';
+import toggleBodyLock from '../helpers/toggleBodyLock';
+import { html } from '../helpers/elementsNodeList';
+import Swiper, { Navigation } from 'swiper';
 
-// Проверка браузера на поддержку .webp изображений ======================================================
+const gallerySwiper = new Swiper('.gallerySwiper', {
+  modules: [Navigation],
+  observer: true,
+  observeParents: true,
+  spaceBetween: 30,
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+});
+
+const swiper = new Swiper('.mySwiper', {
+  spaceBetween: 30,
+});
+
 function isWebp() {
-  // Проверка поддержки webp
   const testWebp = (callback) => {
     const webP = new Image();
 
@@ -12,104 +26,84 @@ function isWebp() {
       'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
   };
 
-  // Добавление класса _webp или _no-webp для HTML
   testWebp((support) => {
     const className = support ? 'webp' : 'no-webp';
     html.classList.add(className);
-
-    console.log(support ? 'webp поддерживается' : 'webp не поддерживается');
   });
 }
 
-/* Проверка мобильного браузера */
-const isMobile = {
-  Android: () => navigator.userAgent.match(/Android/i),
-  BlackBerry: () => navigator.userAgent.match(/BlackBerry/i),
-  iOS: () => navigator.userAgent.match(/iPhone|iPad|iPod/i),
-  Opera: () => navigator.userAgent.match(/Opera Mini/i),
-  Windows: () => navigator.userAgent.match(/IEMobile/i),
-  any: () =>
-    isMobile.Android() ||
-    isMobile.BlackBerry() ||
-    isMobile.iOS() ||
-    isMobile.Opera() ||
-    isMobile.Windows(),
+const fixedNavPage = () => {
+  const root = document.querySelector('.fixed-block');
+  const section = document.querySelectorAll('.section');
+  const lists = document.querySelectorAll('.fixed-block__link');
+
+  function activeLink(li, isYears) {
+    const currentClass = isYears ? 'current-year-link' : 'active-nav-link';
+    lists.forEach((item) => item.classList.remove(currentClass));
+    li.classList.add(currentClass);
+  }
+  lists.forEach((item) =>
+    item.addEventListener('click', function () {
+      activeLink(this, this.classList.contains('press-releases__year-btn'));
+    })
+  );
+  if (root) {
+    window.onscroll = () => {
+      if (!root.classList.contains('press-releases__years')) {
+        if (window.scrollY > 70) {
+          root.style.opacity = 1;
+          root.style.pointerEvents = 'all';
+        }
+        if (window.scrollY < 70) {
+          root.style.opacity = 0;
+          root.style.pointerEvents = 'none';
+        }
+      }
+      section.forEach((sec) => {
+        const top = window.scrollY;
+        const offset = sec.offsetTop;
+        const height = sec.offsetHeight;
+        const id = sec.getAttribute('id');
+
+        if (top >= offset && top < offset + height) {
+          const target = document.querySelector(`[href='#${id}']`);
+          activeLink(target, root.classList.contains('press-releases__years'));
+        }
+      });
+    };
+  }
 };
 
-/* Добавление класса touch для HTML если браузер мобильный */
-function addTouchClass() {
-  // Добавление класса _touch для HTML если браузер мобильный
-  if (isMobile.any()) {
-    html.classList.add('touch');
-  }
-}
-
-// Добавление loaded для HTML после полной загрузки страницы
-function addLoadedClass() {
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      html.classList.add('loaded');
-    }, 0);
-  });
-}
-
-// Получение хеша в адресе сайта
-const getHash = () => location.hash?.replace('#', '');
-
-// Указание хеша в адресе сайта
-function setHash(hash) {
-  hash = hash ? `#${hash}` : location.href.split('#')[0];
-  history.pushState('', '', hash);
-}
-
-// Функция для фиксированной шапки при скролле ===========================================================
-function headerFixed() {
-  const headerStickyObserver = new IntersectionObserver(([entry]) => {
-    header.classList.toggle('sticky', !entry.isIntersecting);
-  });
-
-  if (firstScreen) {
-    headerStickyObserver.observe(firstScreen);
-  }
-}
-
-// Универсальная функция для открытия и закрытия попапов ==================================================
 const togglePopupWindows = () => {
-  document.addEventListener('click', ({ target }) => {
-    if (target.closest('[data-type]')) {
-      const popup = document.querySelector(
-        `[data-popup="${target.dataset.type}"]`
-      );
+  if (window.innerWidth > 550) {
+    document.addEventListener('click', ({ target }) => {
+      if (target.closest('[data-type]')) {
+        const popup = document.querySelector(
+          `[data-popup="${target.dataset.type}"]`
+        );
 
-      if (document.querySelector('._is-open')) {
-        document.querySelectorAll('._is-open').forEach((modal) => {
-          modal.classList.remove('_is-open');
-        });
+        if (target.dataset.type === 'production-gallery') {
+          gallerySwiper.slideTo(target.dataset.slide);
+        }
+
+        if (document.querySelector('._is-open')) {
+          document.querySelectorAll('._is-open').forEach((modal) => {
+            modal.classList.remove('_is-open');
+          });
+        }
+
+        popup.classList.add('_is-open');
+        toggleBodyLock(true);
       }
 
-      popup.classList.add('_is-open');
-      toggleBodyLock(true);
-    }
+      if (target.closest('.button-close')) {
+        const popup = target.closest('._overlay-bg');
 
-    if (
-      target.classList.contains('_overlay-bg') ||
-      target.closest('.button-close')
-    ) {
-      const popup = target.closest('._overlay-bg');
-
-      popup.classList.remove('_is-open');
-      toggleBodyLock(false);
-    }
-  });
+        popup.classList.remove('_is-open');
+        toggleBodyLock(false);
+      }
+    });
+  }
 };
 
-export {
-  isWebp,
-  isMobile,
-  addTouchClass,
-  headerFixed,
-  togglePopupWindows,
-  addLoadedClass,
-  getHash,
-  setHash,
-};
+export { isWebp, togglePopupWindows, fixedNavPage, swiper, gallerySwiper };

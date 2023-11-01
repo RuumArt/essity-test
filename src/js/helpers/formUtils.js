@@ -219,7 +219,7 @@ export const createFormGroup = (title, name, value, placeholder, isRequired, opt
             tooltipDiv.appendChild(tooltipBtn);
             tooltipDiv.appendChild(tooltipContent);
 
-            new Tooltip(tooltipDiv);
+            new Tooltip(name, tooltipDiv);
 
             labelEl.appendChild(tooltipDiv);
         }

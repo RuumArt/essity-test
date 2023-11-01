@@ -63,7 +63,7 @@ export const apiRequest = async (
     endpoint,
     params = {},
     headers = {
-        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/json',
         // Authorization: `Basic ${btoa(`admin:654321`)}`,
     }
 ) => {

@@ -1,8 +1,9 @@
 import outsideClickListener from "../helpers/outsideClickListener.js";
 
 class Tooltip {
-    constructor(tooltip) {
+    constructor(id, tooltip) {
         this.el = tooltip;
+        this.id = id;
         this.btn = this.el.querySelector('.tooltip__icon');
 
         this.init();
@@ -13,7 +14,7 @@ class Tooltip {
             this.el.classList.toggle('_active');
         });
 
-        outsideClickListener([this.el], () => {
+        window.tooltipOutsides[this.id] = outsideClickListener([this.el], () => {
             this.el.classList.remove('_active');
         });
     }

@@ -164,8 +164,11 @@ class AnswerForm extends Form {
 
     removeDom = (arrNames) => {
         arrNames.forEach(name => {
+            const validatorField = this.validator.fieldIds.get(`[name=${name}]`);
+            if (validatorField) this.validator?.removeField(`[name=${name}]`);
             if (this.DOM[name]) this.DOM[name].remove();
             if (window.outsides[name]) window.outsides[name]();
+            if (window.tooltipOutsides[name]) window.tooltipOutsides[name]();
         });
     }
 
@@ -175,7 +178,6 @@ class AnswerForm extends Form {
     }
 
     createProductSelect = (brand, type) => {
-        if(this.DOM.product) this.validator.removeField(`[name=product]`);
         const currentProducts = brand === 'libresse' ? PRODUCTS.filter(item => item.brand === 'libresse') : PRODUCTS.filter(item => item.brand === brand && item.type === type);
         this.createDom('Продукт', 'product', '', 'Выберите продукт', true, currentProducts, 'select');
         this.validator.addField(`[name=product]`, [RULES.REQ]);

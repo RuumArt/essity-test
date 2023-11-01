@@ -18,6 +18,7 @@ import AnswerForm from "./modules/AnswerForm.js";
 import Modal from "./modules/Modal.js";
 
 window.outsides = {};
+window.tooltipOutsides = {};
 
 isWebp();
 const burger = new BurgerMenu().init();

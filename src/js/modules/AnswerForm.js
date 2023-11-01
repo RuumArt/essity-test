@@ -88,7 +88,9 @@ class AnswerForm extends Form {
     }
 
     sampleChange = (e) => {
-        const { value } = e.target;
+        const { value, name } = e.target;
+
+        this.setValue(name, value);
 
         if (value === 'yes') {
             this.createMapInput(e.target.closest('.form__group'));

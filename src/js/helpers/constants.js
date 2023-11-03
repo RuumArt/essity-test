@@ -807,8 +807,27 @@ export const TYPE_TO = [
         id: 'offer',
         title: 'Предложение',
         value: 'offer',
+    },
+];
+
+export const TYPE_TO_2 = [
+    {
+        id: 'type-1',
+        title: 'Сотрудничество по вопросу оптовых продаж',
+        value: 'type-1',
+    },
+    {
+        id: 'type-2',
+        title: 'Предложения по маркетинговым активностям и другие проекты',
+        value: 'type-2',
+    },
+    {
+        id: 'type-3',
+        title: 'Другое',
+        value: 'type-3',
     }
 ];
+
 
 export const ROLLS_ARR = new Array(6).fill({}).map((item, index) => {
     return {

@@ -23,7 +23,6 @@ class QuestionForm extends Form {
             contact: null,
         };
 
-        this.init();
         this.addEventListeners();
     }
 
@@ -86,6 +85,7 @@ class QuestionForm extends Form {
         this.clearAllFormElements();
 
         const { target } = e;
+
         this.setValue(target.name, target.value);
 
         switch (target.value) {

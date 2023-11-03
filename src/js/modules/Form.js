@@ -5,7 +5,17 @@ import {
 
 import JustValidate from "just-validate";
 
-import { BRANDS, COUNTS, PRODUCTS, PRODUCTS_TYPES, RULES, SIZES, TYPE_REVIEW, TYPE_TO } from "../helpers/constants.js";
+import {
+    BRANDS,
+    COUNTS,
+    PRODUCTS,
+    PRODUCTS_TYPES,
+    RULES,
+    SIZES,
+    TYPE_REVIEW,
+    TYPE_TO,
+    TYPE_TO_2
+} from "../helpers/constants.js";
 import { apiRequest } from "../helpers/api.js";
 
 class Form {
@@ -45,6 +55,8 @@ class Form {
 
     setInputValue = (e) => {
         const { name, value } = e.target;
+
+        console.log('fire')
 
         this.state = {
             ...this.state,
@@ -114,7 +126,7 @@ class Form {
                     return TYPE_REVIEW.find(item => item.value === this.state[key])?.title;
                 break;
             case 'type_of':
-                    return TYPE_TO.find(item => item.value === this.state[key])?.title;
+                    return [...TYPE_TO, ...TYPE_TO_2].find(item => item.value === this.state[key])?.title;
                 break;
             default:
                     return this.state[key];
@@ -155,7 +167,7 @@ class Form {
                 } else {
                     fd.append(key, this.getNormalValue(key));
                 }
-            })
+            });
 
             this.sendForm(fd);
         }).onValidate(({ isValid }) => {

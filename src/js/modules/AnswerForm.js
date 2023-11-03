@@ -332,6 +332,7 @@ class AnswerForm extends Form {
         target.addEventListener('input', this.setInputValue);
         target.addEventListener('change', this.setInputValue);
         target.addEventListener('blur', this.setInputValue);
+
         node.after(this.DOM.map);
     }
 

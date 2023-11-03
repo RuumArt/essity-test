@@ -42,6 +42,10 @@ class AddressInput {
 
         this.suggest = new ymaps.SuggestView(this.input);
 
+        this.suggest.events.add(['select'], (e) => {
+            this.setAddressValue(e.originalEvent.item.value);
+        })
+
         this.addMapEventListeners();
     }
 

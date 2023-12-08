@@ -142,7 +142,11 @@ class CustomSelect {
         this.addEventListeners();
 
         if(!this.placeholder && this.options.length > 0) {
-            this.options[0].dispatchEvent(new Event('click'));
+            const _selectedOptionIndex = Array.from(this.select.options).findIndex(item => {
+                return item.selected === true;
+            });
+
+            this.options[_selectedOptionIndex !== -1 ? _selectedOptionIndex : 0].dispatchEvent(new Event('click'));
         }
     }
 }

@@ -254,7 +254,7 @@ export const PRODUCTS = [
     },
     {
         id: 'p12',
-        title: 'Туалетная Бумага Zewa Плюс 2-ух сл. БЕЛАЯ 4 рул.',
+        title: 'Туалетная Бумага Zewa Плюс 2-ух сл. БЕЛАЯ',
         value: 'p12',
         brand: 'zewa',
         type: 'toilet_paper',
@@ -263,7 +263,7 @@ export const PRODUCTS = [
     },
     {
         id: 'p13',
-        title: 'Туалетная Бумага Zewa Плюс 2-ух сл. с ароматом океанической свежести 4 рул.',
+        title: 'Туалетная Бумага Zewa Плюс 2-ух сл. с ароматом океанической свежести',
         value: 'p13',
         brand: 'zewa',
         type: 'toilet_paper',
@@ -272,7 +272,7 @@ export const PRODUCTS = [
     },
     {
         id: 'p14',
-        title: 'Туалетная Бумага Zewa Плюс 2-ух сл. с ароматом яблока 4 рул.',
+        title: 'Туалетная Бумага Zewa Плюс 2-ух сл. с ароматом яблока',
         value: 'p14',
         brand: 'zewa',
         type: 'toilet_paper',
@@ -281,7 +281,7 @@ export const PRODUCTS = [
     },
     {
         id: 'p15',
-        title: 'Туалетная бумага Zewa Deluxe 3х-сл. 4 рул.',
+        title: 'Туалетная бумага Zewa Deluxe 3х-сл.',
         value: 'p15',
         brand: 'zewa',
         type: 'toilet_paper',
@@ -290,16 +290,17 @@ export const PRODUCTS = [
     },
     {
         id: 'p16',
-        title: 'Туалетная бумага Zewa Deluxe Жасмин 3х-сл. 6 рул.',
+        title: 'Туалетная бумага Zewa Deluxe Жасмин 3х-сл.',
         value: 'p16',
         brand: 'zewa',
         type: 'toilet_paper',
         image: '/images/form/products/zewa/p16.png',
         isRoll: true,
+        rolls: 6,
     },
     {
         id: 'p17',
-        title: 'Туалетная бумага Zewa Deluxe Орхидея 3х-сл. 4 рул.',
+        title: 'Туалетная бумага Zewa Deluxe Орхидея 3х-сл.',
         value: 'p17',
         brand: 'zewa',
         type: 'toilet_paper',
@@ -308,7 +309,7 @@ export const PRODUCTS = [
     },
     {
         id: 'p18',
-        title: 'Туалетная бумага Zewa Deluxe Персик 3х-сл. 4 рул.',
+        title: 'Туалетная бумага Zewa Deluxe Персик 3х-сл.',
         value: 'p18',
         brand: 'zewa',
         type: 'toilet_paper',
@@ -317,7 +318,7 @@ export const PRODUCTS = [
     },
     {
         id: 'p19',
-        title: 'Туалетная бумага Zewa Deluxe Ромашка 3х-сл. 4 рул.',
+        title: 'Туалетная бумага Zewa Deluxe Ромашка 3х-сл.',
         value: 'p19',
         brand: 'zewa',
         type: 'toilet_paper',
@@ -326,7 +327,7 @@ export const PRODUCTS = [
     },
     {
         id: 'p20',
-        title: 'Туалетная Бумага Zewa Just 1,  4-х сл. 4 рул.',
+        title: 'Туалетная Бумага Zewa Just 1, 4-х сл.',
         value: 'p20',
         brand: 'zewa',
         type: 'toilet_paper',
@@ -335,25 +336,27 @@ export const PRODUCTS = [
     },
     {
         id: 'p21',
-        title: 'Туалетная бумага Zewa Comfort 3х-сл. 6 рул.',
+        title: 'Туалетная бумага Zewa Comfort 3х-сл.',
         value: 'p21',
         brand: 'zewa',
         type: 'toilet_paper',
         image: '/images/form/products/zewa/p21.png',
         isRoll: true,
+        rolls: 6,
     },
     {
         id: 'p22',
-        title: 'Туалетная бумага Zewa Natural Comfort 3х-сл. 6 рул.',
+        title: 'Туалетная бумага Zewa Natural Comfort 3х-сл.',
         value: 'p22',
         brand: 'zewa',
         type: 'toilet_paper',
         image: '/images/form/products/zewa/p22.png',
         isRoll: true,
+        rolls: 6,
     },
     {
         id: 'p23',
-        title: 'Туалетная Бумага Zewa Natural Soft 4-х сл. 4 рул.',
+        title: 'Туалетная Бумага Zewa Natural Soft 4-х сл.',
         value: 'p23',
         brand: 'zewa',
         type: 'toilet_paper',
@@ -362,16 +365,17 @@ export const PRODUCTS = [
     },
     {
         id: 'p24',
-        title: 'Туалетная бумага Zewa Exclusive Comfort 4-х сл. 4 рул.',
+        title: 'Туалетная бумага Zewa Exclusive Comfort 4-х сл.',
         value: 'p24',
         brand: 'zewa',
         type: 'toilet_paper',
         image: '/images/form/products/zewa/p24.png',
+        isRoll: true,
     },
 
     {
         id: 'p25',
-        title: 'Прокладки Libresse Pure Sensitive НОРМАЛ 6 шт.',
+        title: 'Прокладки Libresse Pure Sensitive нормал 6',
         value: 'p25',
         brand: 'libresse',
         type: 'toilet_paper',
@@ -379,7 +383,7 @@ export const PRODUCTS = [
     },
     {
         id: 'p26',
-        title: 'Прокладки Libresse Pure Sensitive НОЧНЫЕ 8 шт.',
+        title: 'Прокладки Libresse Pure Sensitive ночные 8',
         value: 'p26',
         brand: 'libresse',
         type: 'toilet_paper',
@@ -387,7 +391,7 @@ export const PRODUCTS = [
     },
     {
         id: 'p27',
-        title: 'Прокладки Libresse Ultra НОРМАЛ С МЯГКОЙ ПОВЕРХНОСТЬЮ 10шт.',
+        title: 'Прокладки Libresse Ultra нормал с мягкой поверхностью 10',
         value: 'p27',
         brand: 'libresse',
         type: 'toilet_paper',
@@ -395,7 +399,7 @@ export const PRODUCTS = [
     },
     {
         id: 'p28',
-        title: 'Прокладки Libresse Ultra НОРМАЛ С МЯГКОЙ ПОВЕРХНОСТЬЮ 20 шт.',
+        title: 'Прокладки Libresse Ultra нормал с мягкой поверхностью 20',
         value: 'p28',
         brand: 'libresse',
         type: 'toilet_paper',
@@ -403,7 +407,7 @@ export const PRODUCTS = [
     },
     {
         id: 'p29',
-        title: 'Прокладки Libresse Ultra СУПЕР С МЯГКОЙ ПОВЕРХНОСТЬЮ 8 шт.',
+        title: 'Прокладки Libresse Ultra супер с мягкой поверхностью 8',
         value: 'p29',
         brand: 'libresse',
         type: 'toilet_paper',
@@ -411,7 +415,7 @@ export const PRODUCTS = [
     },
     {
         id: 'p30',
-        title: 'Прокладки Libresse Ultra СУПЕР С МЯГКОЙ ПОВЕРХНОСТЬЮ 16 шт.',
+        title: 'Прокладки Libresse Ultra супер с мягкой поверхностью 16',
         value: 'p30',
         brand: 'libresse',
         type: 'toilet_paper',
@@ -419,7 +423,7 @@ export const PRODUCTS = [
     },
     {
         id: 'p31',
-        title: 'Прокладки Libresse Ultra НОЧНЫЕ 8 шт.',
+        title: 'Прокладки Libresse Ultra ночные 8',
         value: 'p31',
         brand: 'libresse',
         type: 'toilet_paper',
@@ -427,7 +431,7 @@ export const PRODUCTS = [
     },
     {
         id: 'p32',
-        title: 'Прокладки Libresse Ultra НОЧНЫЕ 16шт.',
+        title: 'Прокладки Libresse Ultra ночные 16',
         value: 'p32',
         brand: 'libresse',
         type: 'toilet_paper',

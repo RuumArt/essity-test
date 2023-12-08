@@ -129,7 +129,7 @@ const createSelectOption = (value, title, image) => {
     return option;
 }
 
-const createSelect = (options, name, placeholder = "") => {
+const createSelect = (options, name, placeholder = "", value) => {
     const select = document.createElement('select');
     select.classList.add('custom-select');
     select.name = name;
@@ -141,6 +141,8 @@ const createSelect = (options, name, placeholder = "") => {
 
     for (let i = 0; i < options.length; i += 1) {
         const option = createSelectOption(options[i].value, options[i].title, options[i].image);
+        if (value === options[i].value) option.setAttribute('selected', '');
+
         select.add(option);
     }
 
@@ -235,7 +237,7 @@ export const createFormGroup = (title, name, value, placeholder, isRequired, opt
                 groupEl.appendChild(createTextarea(name, value, placeholder))
             break;
         case 'select':
-                const select = createSelect(options, name, placeholder);
+                const select = createSelect(options, name, placeholder, value);
                 groupEl.appendChild(select);
                 new CustomSelect(select);
             break;

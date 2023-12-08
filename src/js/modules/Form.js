@@ -37,6 +37,15 @@ class Form {
         this.init();
     }
 
+    changeLogotype = (src) => {
+        this.form.classList.add('is-brand');
+        const img = document.createElement('img');
+        img.setAttribute('src', src);
+
+        this.formImage.innerHTML = '';
+        this.formImage.appendChild(img);
+    }
+
     setValue = (name, value) => {
         this.state = {
             ...this.state,
@@ -63,7 +72,6 @@ class Form {
             [name]: value,
         };
     }
-
 
     createSubmitBlock = () => {
         const requireDiv = createFormGroupEl();

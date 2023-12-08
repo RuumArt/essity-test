@@ -44,7 +44,6 @@ class QuestionForm extends Form {
         this.form.classList.remove('is-brand');
 
         if (this.DOM.brand) {
-            this.formImage.src = DEFAULT_LOGO;
             this.DOM.brand.querySelector('select').removeEventListener('change', this.onChangeBrand);
             this.DOM.brand.remove();
 
@@ -95,7 +94,6 @@ class QuestionForm extends Form {
                 break;
             default:
                 this.createBrandSelect();
-                this.form.classList.add('is-brand');
         }
 
     }
@@ -104,7 +102,7 @@ class QuestionForm extends Form {
         const { target, detail } = e;
         this.setValue(target.name, target.value);
 
-        if (detail.image) this.formImage.src = detail.image;
+        if (detail.image) this.changeLogotype(detail.image);
 
         if (!this.DOM.contact) {
             this.createContactBlock();

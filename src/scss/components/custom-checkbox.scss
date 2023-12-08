@@ -36,7 +36,7 @@
     justify-content: center;
     width: rem(40);
     height: rem(40);
-    border: 2px solid $lineColor;
+    border: 2px solid $navy;
     transition: background-color $defaultTransition, border-color $defaultTransition;
 
     &::after {
@@ -55,7 +55,7 @@
 
   &:hover {
     #{$self}__icon {
-      border-color: $greyColor;
+      border-color: $navy;
     }
   }
 

@@ -13,7 +13,8 @@ import {
     TYPE_TO
 } from "../helpers/constants.js";
 import Form from "./Form.js";
-import AddressInput from "./AddressInput.js";
+
+import IMask from "imask";
 
 const INPUT_CHANGE_CONTACT = ['type_of', 'brand', 'type_review', 'type_product'];
 
@@ -108,7 +109,7 @@ class AnswerForm extends Form {
 
         const key = target.value.toLowerCase();
 
-        if (detail.image) this.formImage.src = detail.image;
+        if (detail.image) this.changeLogotype(detail.image);
 
         if(!BRANDS_WITHOUT_TYPE.includes(key)) {
             this.createDom('Тип продукта', 'type_product', '', 'Выберите тип продукта', false, PRODUCTS_TYPES[key], 'select');
@@ -120,20 +121,81 @@ class AnswerForm extends Form {
     }
 
     onChangeTypeProduct = () => {
-        this.createProductSelect(this.state.brand, this.state.type_product);
+        if(this.state.type_product !== 'other') {
+            this.createProductSelect(this.state.brand, this.state.type_product);
+        }
+
         this.createContactInfo(this.state.type_of, this.state.type_review);
         this.createSubmitBlock();
+    }
+
+    getProductMask = (brand, product, type) => {
+        if (brand === 'libresse') {
+            return {
+                placeholder: 'дд.мм.гггг XXX 00:00',
+                value: '00.00.0000 *** 00:00',
+            }
+        } else if (brand === 'zewa') {
+            if (product === 'napkins') {
+                if (['p4', 'p5', 'p6'].includes(product)) {
+                    return {
+                        placeholder: 'дд/мм/гг XXX 00:00',
+                        value: '00/00/00 *** 00:00',
+                    }
+                } else {
+                    return {
+                        placeholder: 'дд/мм/гг XXX 00:00',
+                        value: '00/00/00 *** 00:00',
+                    }
+                }
+            } else if (type === 'toilet_paper') {
+                if (['p9', 'p10', 'p11'].includes(product)) {
+                    return {
+                        placeholder: 'дд.мм.гггг. XX 00:00',
+                        value: '00.00.0000. ** 00:00',
+                    }
+                } else {
+                    return {
+                        placeholder: 'XXX.XX.X дд.мм.гг 00:00',
+                        value: '***.**.* 00.00.00 00:00',
+                    }
+                }
+            }
+        }
+
+        return {
+            placeholder: '24.02.2022 VEN 01:22',
+            value: '00.00.000 *** 00:00',
+        };
     }
 
     onChangeProduct = (e) => {
         const { value } = e.target;
         const product = PRODUCTS.find(p => p.value === value);
 
-        if(this.state.type_of === 'review') {
-            if (product.isRoll) {
-                this.createDom('Количество рулонов в упаковке', 'rolls', '', null, false, ROLLS_ARR, 'select', null, this.DOM.product);
+        if (this.DOM.contact?.code) {
+            const input = this.DOM.contact.code.querySelector('input');
+            const mask = this.getProductMask(this.state.brand, product.id, this.state.type_product);
+
+            if (this.contactMask) {
+                this.contactMask.destroy();
+                input.value = '';
             }
 
+            if (mask.placeholder) input.placeholder = mask.placeholder;
+
+            if (mask?.value) {
+                this.contactMask = IMask(input, {
+                    mask: mask.value,
+                });
+            }
+        }
+
+        if (product.isRoll) {
+            this.createDom('Количество рулонов в упаковке', 'rolls', `rolls_${product?.rolls || 4}`, null, false, ROLLS_ARR, 'select', null, this.DOM.product);
+        }
+
+        if(this.state.type_of === 'review') {
             if (product.isSize) {
                 const currentSizes = SIZES.filter(item => item.product === value)
                 this.createDom('Размер', 'size', '', null, false, currentSizes, 'select', null, this.DOM.product);
@@ -175,7 +237,6 @@ class AnswerForm extends Form {
     }
 
     createBrandSelect = () => {
-        this.form.classList.add('is-brand');
         this.createDom('Бренд', 'brand', '', 'Выберите бренд, если ваш запрос связан с конкретным брендом', false, BRANDS, 'select');
     }
 

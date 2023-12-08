@@ -87,7 +87,12 @@
 
     img {
       display: block;
-      max-width: 100%;
+      max-width: 65%;
+      margin: 0 auto;
+
+      @include desktop {
+        max-width: 100%;
+      }
     }
   }
 

@@ -37,6 +37,11 @@ class Form {
         this.init();
     }
 
+    clearLogotype = () => {
+        this.formImage.innerHTML = '';
+        this.form.classList.remove('is-brand');
+    }
+
     changeLogotype = (src) => {
         this.form.classList.add('is-brand');
         const img = document.createElement('img');
@@ -64,8 +69,6 @@ class Form {
 
     setInputValue = (e) => {
         const { name, value } = e.target;
-
-        console.log('fire')
 
         this.state = {
             ...this.state,
@@ -98,6 +101,8 @@ class Form {
         });
 
         this.validator.addField(`[name=accept]`, [ RULES.REQ ]);
+
+        this.setCodeInputMask(null);
     }
 
     removeSubmitBlock = () => {

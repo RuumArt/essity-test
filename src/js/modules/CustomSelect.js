@@ -46,14 +46,15 @@ class CustomSelect {
 
         this.valueBtn.querySelector('span._title').textContent = text;
 
+        this.valueBtn.querySelector(`.${this.imageClass}`)?.remove();
+
         if (image) {
-            this.valueBtn.querySelector(`.${this.imageClass}`)?.remove();
             this.valueBtn.prepend(this.createValueImage(image));
         }
 
         this.select.dispatchEvent(new CustomEvent('change', {
             detail: {
-                image: image ? image.getAttribute('src') : '',
+                image: image ? image.getAttribute('src') : null,
             }
         }));
     }

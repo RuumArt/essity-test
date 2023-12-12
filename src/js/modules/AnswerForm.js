@@ -1,14 +1,13 @@
 
 import {
-    createFormGroup,
+    createFormGroup, getNumWord,
 } from "../helpers/formUtils.js";
 
 import {
     BRANDS,
     BRANDS_WITHOUT_TYPE, CONTACT_INPUTS, COUNTS,
     PRODUCTS,
-    PRODUCTS_TYPES,
-    ROLLS_ARR, RULES, SIZES,
+    PRODUCTS_TYPES, RULES, SIZES,
     TYPE_REVIEW,
     TYPE_TO
 } from "../helpers/constants.js";
@@ -27,6 +26,8 @@ class AnswerForm extends Form {
         this.DOM = {};
 
         this.targetPath = [];
+
+        this.lastBrandImage = null;
 
         this.initForm();
     }
@@ -50,6 +51,10 @@ class AnswerForm extends Form {
         this.setValue(name, value);
         this.clearDomFromPath(name);
 
+        if(['type_review', 'type_of'].includes(name)) {
+            this.clearLogotype();
+        }
+
         switch (name) {
             case 'brand':
                 this.changeBrand(e);
@@ -66,7 +71,18 @@ class AnswerForm extends Form {
             case 'product':
                 this.onChangeProduct(e);
                 break;
+            case 'size':
+                this.onChangeSizes(e);
+                break;
+            case 'count':
+                this.onChangeSizes(e);
+                break;
         }
+    }
+
+    onChangeSizes = (e) => {
+        const { target } = e;
+        this.setDetailImage(target.value);
     }
 
     onChangeType = (e) => {
@@ -75,8 +91,6 @@ class AnswerForm extends Form {
         const currentType = TYPE_TO.find(item => item.value === target.value);
 
         if (this.formHeader) this.formHeader.textContent = currentType.title;
-
-        this.form.classList.remove('is-brand');
 
         switch (target.value) {
             case 'review':
@@ -111,33 +125,42 @@ class AnswerForm extends Form {
 
         if (detail.image) this.changeLogotype(detail.image);
 
-        if(!BRANDS_WITHOUT_TYPE.includes(key)) {
-            this.createDom('Тип продукта', 'type_product', '', 'Выберите тип продукта', false, PRODUCTS_TYPES[key], 'select');
-        } else {
-            this.createProductSelect(this.state.brand, this.state.type_product);
+        this.lastBrandImage = detail.image;
+
+        if (this.state.type_of === 'review' && this.state.type_review === 'brand') {
             this.createContactInfo(this.state.type_of, this.state.type_review);
             this.createSubmitBlock();
+        } else {
+            if(!BRANDS_WITHOUT_TYPE.includes(key)) {
+                this.createDom('Тип продукта', 'type_product', '', 'Выберите тип продукта', false, PRODUCTS_TYPES[key], 'select');
+            } else {
+                this.createProductSelect(this.state.brand, this.state.type_product);
+                this.createContactInfo(this.state.type_of, this.state.type_review);
+                this.createSubmitBlock();
+                this.setCodeInputMask(null);
+            }
         }
     }
 
     onChangeTypeProduct = () => {
-        if(this.state.type_product !== 'other') {
+        if (this.state.type_product !== 'other') {
             this.createProductSelect(this.state.brand, this.state.type_product);
         }
 
         this.createContactInfo(this.state.type_of, this.state.type_review);
         this.createSubmitBlock();
+        this.setCodeInputMask(null);
     }
 
-    getProductMask = (brand, product, type) => {
+    getProductMask = (brand, productId, type) => {
         if (brand === 'libresse') {
             return {
                 placeholder: 'дд.мм.гггг XXX 00:00',
                 value: '00.00.0000 *** 00:00',
             }
         } else if (brand === 'zewa') {
-            if (product === 'napkins') {
-                if (['p4', 'p5', 'p6'].includes(product)) {
+            if (type === 'napkins') {
+                if (['p4', 'p5', 'p6'].includes(productId)) {
                     return {
                         placeholder: 'дд/мм/гг XXX 00:00',
                         value: '00/00/00 *** 00:00',
@@ -149,7 +172,7 @@ class AnswerForm extends Form {
                     }
                 }
             } else if (type === 'toilet_paper') {
-                if (['p9', 'p10', 'p11'].includes(product)) {
+                if (['p9', 'p10', 'p11'].includes(productId)) {
                     return {
                         placeholder: 'дд.мм.гггг. XX 00:00',
                         value: '00.00.0000. ** 00:00',
@@ -164,18 +187,15 @@ class AnswerForm extends Form {
         }
 
         return {
-            placeholder: '24.02.2022 VEN 01:22',
-            value: '00.00.000 *** 00:00',
+            placeholder: 'LOT 2100021541 211217 09:04',
+            value: 'LOT 0000000000 000000 00:00',
         };
     }
 
-    onChangeProduct = (e) => {
-        const { value } = e.target;
-        const product = PRODUCTS.find(p => p.value === value);
-
+    setCodeInputMask = (product) => {
         if (this.DOM.contact?.code) {
             const input = this.DOM.contact.code.querySelector('input');
-            const mask = this.getProductMask(this.state.brand, product.id, this.state.type_product);
+            const mask = this.getProductMask(this.state.brand, product?.id, this.state.type_product);
 
             if (this.contactMask) {
                 this.contactMask.destroy();
@@ -190,30 +210,50 @@ class AnswerForm extends Form {
                 });
             }
         }
+    }
 
-        if (product.isRoll) {
-            this.createDom('Количество рулонов в упаковке', 'rolls', `rolls_${product?.rolls || 4}`, null, false, ROLLS_ARR, 'select', null, this.DOM.product);
+    setDetailImage = (name) => {
+        const folder = BRANDS.find(item => item.value === this.state.brand )?.folder;
+        this.changeLogotype(name ? `/images/form/products/${folder}/detail/${name}.png` : this.lastBrandImage);
+    }
+
+    onChangeProduct = (e) => {
+        const { value } = e.target;
+        const product = PRODUCTS.find(p => p.value === value);
+
+        this.setCodeInputMask(product);
+
+        this.state.rolls = '';
+
+        if (product?.isRoll) {
+            const rollsString = getNumWord(product?.rolls || 4, ['рулон', 'рулона', 'рулонов']);
+            this.state.rolls = rollsString;
+            this.createDom('Количество рулонов в упаковке', 'rolls', `${rollsString}`, null, false, [], 'input', null, this.DOM.product, true);
         }
 
+        const currentSizes = SIZES.filter(item => item.product === value);
+        const currentCounts = COUNTS.filter(item => item.product === value);
+
         if(this.state.type_of === 'review') {
-            if (product.isSize) {
-                const currentSizes = SIZES.filter(item => item.product === value)
-                this.createDom('Размер', 'size', '', null, false, currentSizes, 'select', null, this.DOM.product);
+            if (product?.isSize) {
+                this.createDom('Размер и количество в упаковке', 'size', '', null, false, currentSizes, 'select', null, this.DOM.product);
             }
 
-            if (product.isCount) {
-                const currentCounts = COUNTS.filter(item => item.product === value)
+            if (product?.isCount) {
                 this.createDom('Количество в упаковке', 'count', '', null, false, currentCounts, 'select', null, this.DOM.product);
             }
         }
+
+        const detailPhotoName = currentSizes[0]?.value || currentCounts[0]?.value || product?.id;
+        this.setDetailImage(detailPhotoName);
     }
 
-    createDom = (title, name, value, placeholder, isRequired, options, type = 'input', mask = null, element = null) => {
+    createDom = (title, name, value, placeholder, isRequired, options, type = 'input', mask = null, element = null, isReadonly = false) => {
         if (this.DOM[name]) {
             this.DOM[name].removeEventListener('change', this.onChangeLogicInput);
         }
 
-        this.DOM[name] = createFormGroup(title, name, value, placeholder, isRequired, options, type, mask);
+        this.DOM[name] = createFormGroup(title, name, value, placeholder, isRequired, options, type, mask, null, isReadonly);
 
         if (element) {
             element.after(this.DOM[name]);
@@ -242,7 +282,12 @@ class AnswerForm extends Form {
 
     createProductSelect = (brand, type) => {
         const currentProducts = brand === 'libresse' ? PRODUCTS.filter(item => item.brand === 'libresse') : PRODUCTS.filter(item => item.brand === brand && item.type === type);
-        this.createDom('Продукт', 'product', '', 'Выберите продукт', true, currentProducts, 'select');
+        this.createDom('Продукт', 'product', '', 'Выберите продукт', true, [...currentProducts, {
+            id: 'other',
+            title: 'Не помню / нет в списке',
+            value: 'other',
+        }], 'select');
+
         this.validator.addField(`[name=product]`, [RULES.REQ]);
     }
 
@@ -338,15 +383,10 @@ class AnswerForm extends Form {
         const CURRENT_CONTACT_INPUT = CONTACT_INPUTS.map(item => {
             return {
                 ...item,
-                isRequired: type !== 'offer',
             }
         });
 
-        let INPUTS_RENDER = [...INPUTS];
-
-        if (type === 'offer' || typeReview === 'product') {
-            INPUTS_RENDER = [...INPUTS, ...CURRENT_CONTACT_INPUT];
-        }
+        const INPUTS_RENDER = [...INPUTS, ...CURRENT_CONTACT_INPUT];
 
         INPUTS_RENDER.forEach(INPUT => {
             this.DOM.contact[INPUT.name] = createFormGroup(INPUT.title, INPUT.name, '', INPUT.placeholder, INPUT.isRequired, INPUT?.options, INPUT.type, INPUT.mask, INPUT?.tooltip);

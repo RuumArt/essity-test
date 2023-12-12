@@ -2,14 +2,14 @@
   display: block;
   width: 100%;
   padding: rem(24) rem(16);
-  border: 2px solid $navy;
+  border: 2px solid $lineColor;
   font-size: rem(16);
   line-height: 1.25;
   transition: background-color $defaultTransition, border-color $defaultTransition;
 
   &:hover,
   &:focus {
-    border-color: $navy;
+    border-color: $greyColor;
   }
 
   &[disabled] {

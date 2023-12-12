@@ -9,12 +9,14 @@ export const getNumWord = (number, txt) => {
     return `${number} ${txt[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]]}`;
 }
 
-const createInput = (name, value, mask, placeholder = "", type = "text") => {
+const createInput = (name, value, mask, placeholder = "", type = "text", isReadonly = false) => {
     const input = document.createElement('input');
     input.classList.add('form-control');
     input.type = type;
     input.name = name;
-    input.placeholder = placeholder;
+    input.value = value;
+    if (placeholder) input.placeholder = placeholder;
+    if (isReadonly) input.readOnly = isReadonly;
 
     if (mask) {
         input.setAttribute('data-mask-input', mask);
@@ -173,7 +175,7 @@ export const createFormGroupEl = () => {
     return div;
 }
 
-export const createFormGroup = (title, name, value, placeholder, isRequired, options, type = 'input', mask = null, tooltip = null) => {
+export const createFormGroup = (title, name, value, placeholder, isRequired, options, type = 'input', mask = null, tooltip = null, isReadonly) => {
     const groupEl = document.createElement('div');
     groupEl.classList.add('form__group');
 
@@ -231,7 +233,7 @@ export const createFormGroup = (title, name, value, placeholder, isRequired, opt
 
     switch (type) {
         case 'input':
-                groupEl.appendChild(createInput(name, value, mask, placeholder))
+                groupEl.appendChild(createInput(name, value, mask, placeholder, 'text', isReadonly))
             break;
         case 'textarea':
                 groupEl.appendChild(createTextarea(name, value, placeholder))

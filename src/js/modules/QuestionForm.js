@@ -41,7 +41,7 @@ class QuestionForm extends Form {
 
     clearAllFormElements = () => {
         this.state = {};
-        this.form.classList.remove('is-brand');
+        this.clearLogotype();
 
         if (this.DOM.brand) {
             this.DOM.brand.querySelector('select').removeEventListener('change', this.onChangeBrand);

@@ -156,31 +156,31 @@ class AnswerForm extends Form {
         if (brand === 'libresse') {
             return {
                 placeholder: 'дд.мм.гггг XXX 00:00',
-                value: '00.00.0000 *** 00:00',
+                value: '00.00.0000 *** HH:MM',
             }
         } else if (brand === 'zewa') {
             if (type === 'napkins') {
                 if (['p4', 'p5', 'p6'].includes(productId)) {
                     return {
                         placeholder: 'дд/мм/гг XXX 00:00',
-                        value: '00/00/00 *** 00:00',
+                        value: '00/00/00 *** HH:MM',
                     }
                 } else {
                     return {
                         placeholder: 'дд/мм/гг XXX 00:00',
-                        value: '00/00/00 *** 00:00',
+                        value: '00/00/00 *** HH:MM',
                     }
                 }
             } else if (type === 'toilet_paper') {
-                if (['p9', 'p10', 'p11'].includes(productId)) {
+                if (['p9', 'p10', 'p11', 'p4-n'].includes(productId)) {
                     return {
                         placeholder: 'дд.мм.гггг. XX 00:00',
-                        value: '00.00.0000. ** 00:00',
+                        value: '00.00.0000. ** HH:MM',
                     }
                 } else {
                     return {
                         placeholder: 'XXX.XX.X дд.мм.гг 00:00',
-                        value: '***.**.* 00.00.00 00:00',
+                        value: '***.**.* 00.00.00 HH:MM',
                     }
                 }
             }
@@ -188,7 +188,7 @@ class AnswerForm extends Form {
 
         return {
             placeholder: 'LOT 2100021541 211217 09:04',
-            value: 'LOT 0000000000 000000 00:00',
+            value: 'LOT 0000000000 000000 HH:MM',
         };
     }
 
@@ -207,6 +207,22 @@ class AnswerForm extends Form {
             if (mask?.value) {
                 this.contactMask = IMask(input, {
                     mask: mask.value,
+                    blocks: {
+                        HH: {
+                            mask: IMask.MaskedRange,
+                            placeholderChar: 'HH',
+                            from: 0,
+                            to: 23,
+                            maxLength: 2
+                        },
+                        MM: {
+                            mask: IMask.MaskedRange,
+                            placeholderChar: 'MM',
+                            from: 0,
+                            to: 59,
+                            maxLength: 2
+                        }
+                    }
                 });
             }
         }
@@ -240,7 +256,7 @@ class AnswerForm extends Form {
             }
 
             if (product?.isCount) {
-                this.createDom('Количество в упаковке', 'count', '', null, false, currentCounts, 'select', null, this.DOM.product);
+                this.createDom('Размер и количество в упаковке', 'count', '', null, false, currentCounts, 'select', null, this.DOM.product);
             }
         }
 

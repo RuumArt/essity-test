@@ -216,6 +216,30 @@ export const PRODUCTS = [
         image: '/images/form/products/zewa/p6.png',
     },
     {
+        id: 'p6-n',
+        title: 'Платки бумажные Zewa Deluxe Design',
+        value: 'p6-n',
+        brand: 'zewa',
+        type: 'napkins',
+        image: '/images/form/products/zewa/p6-n.png',
+    },
+    {
+        id: 'p7-n',
+        title: 'Салфетки Zewa Deluxe Aroma',
+        value: 'p7-n',
+        brand: 'zewa',
+        type: 'napkins',
+        image: '/images/form/products/zewa/p7-n.png',
+    },
+    {
+        id: 'p8-n',
+        title: 'Салфетки бумажные Zewa Deluxe Kids',
+        value: 'p8-n',
+        brand: 'zewa',
+        type: 'napkins',
+        image: '/images/form/products/zewa/p8-n.png',
+    },
+    {
         id: 'p7',
         title: 'Салфетки бумажные в коробке Zewa Deluxe 3 слоя',
         value: 'p7',
@@ -844,13 +868,13 @@ export const SIZES = [
         value: 's22',
         image: '/images/form/products/tena/s22.png'
     },
-    {
-        id: 's23',
-        title: 'Впитывающие трусы TENA Lady Slim Pants Normal M 8 шт.',
-        product: 'p39',
-        value: 's23',
-        image: '/images/form/products/tena/s23.png'
-    },
+    // {
+    //     id: 's23',
+    //     title: 'Впитывающие трусы TENA Lady Slim Pants Normal M 8 шт.',
+    //     product: 'p39',
+    //     value: 's23',
+    //     image: '/images/form/products/tena/s23.png'
+    // },
     {
         id: 's24',
         title: 'Впитывающие трусы TENA Lady Slim Pants Normal L 7 шт.',

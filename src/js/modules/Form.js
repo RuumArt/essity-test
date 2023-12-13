@@ -168,21 +168,27 @@ class Form {
             validateBeforeSubmitting: true,
         }).onSuccess((e) => {
             e.preventDefault();
-            const fd = new FormData();
 
-            fd.append('type', this.type);
+            grecaptcha.enterprise.ready(async () => {
+                const token = await grecaptcha.enterprise.execute('6LebIjApAAAAABJsfLFI7r3_QuN5VcUBlm06mgIM', { action: 'LOGIN' });
 
-            Object.keys(this.state).forEach(key => {
-                if (key === 'file') {
-                    for (let file of this.state[key]) {
-                        fd.append("file[]", file);
+                const fd = new FormData();
+
+                fd.append('token', token);
+
+                fd.append('type', this.type);
+                Object.keys(this.state).forEach(key => {
+                    if (key === 'file') {
+                        for (let file of this.state[key]) {
+                            fd.append("file[]", file);
+                        }
+                    } else {
+                        fd.append(key, this.getNormalValue(key));
                     }
-                } else {
-                    fd.append(key, this.getNormalValue(key));
-                }
-            });
+                });
 
-            this.sendForm(fd);
+                this.sendForm(fd);
+            });
         }).onValidate(({ isValid }) => {
             if (this.submitDOM.btnDiv) this.submitDOM.btnDiv.querySelector('button').disabled = !isValid;
         });

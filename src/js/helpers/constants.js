@@ -263,6 +263,7 @@ export const PRODUCTS = [
         type: 'toilet_paper',
         image: '/images/form/products/zewa/p15.png',
         isRoll: true,
+        rolls: [4, 8, 12, 24],
     },
     {
         id: 'p16',
@@ -272,7 +273,7 @@ export const PRODUCTS = [
         type: 'toilet_paper',
         image: '/images/form/products/zewa/p16.png',
         isRoll: true,
-        rolls: 6,
+        rolls: [6],
     },
     {
         id: 'p17',
@@ -282,6 +283,7 @@ export const PRODUCTS = [
         type: 'toilet_paper',
         image: '/images/form/products/zewa/p17.png',
         isRoll: true,
+        rolls: [4, 8],
     },
     {
         id: 'p18',
@@ -291,6 +293,7 @@ export const PRODUCTS = [
         type: 'toilet_paper',
         image: '/images/form/products/zewa/p18.png',
         isRoll: true,
+        rolls: [4, 8],
     },
     {
         id: 'p19',
@@ -300,6 +303,7 @@ export const PRODUCTS = [
         type: 'toilet_paper',
         image: '/images/form/products/zewa/p19.png',
         isRoll: true,
+        rolls: [4, 8, 12],
     },
     {
         id: 'p21',
@@ -309,7 +313,7 @@ export const PRODUCTS = [
         type: 'toilet_paper',
         image: '/images/form/products/zewa/p21.png',
         isRoll: true,
-        rolls: 6,
+        rolls: [6],
     },
     {
         id: 'p22',
@@ -319,7 +323,7 @@ export const PRODUCTS = [
         type: 'toilet_paper',
         image: '/images/form/products/zewa/p22.png',
         isRoll: true,
-        rolls: 6,
+        rolls: [6, 12],
     },
     {
         id: 'p12',
@@ -329,6 +333,7 @@ export const PRODUCTS = [
         type: 'toilet_paper',
         image: '/images/form/products/zewa/p12.png',
         isRoll: true,
+        rolls: [4, 8, 12],
     },
     {
         id: 'p13',
@@ -338,6 +343,7 @@ export const PRODUCTS = [
         type: 'toilet_paper',
         image: '/images/form/products/zewa/p13.png',
         isRoll: true,
+        rolls: [4, 12],
     },
     {
         id: 'p1-n',
@@ -347,6 +353,7 @@ export const PRODUCTS = [
         type: 'toilet_paper',
         image: '/images/form/products/zewa/p1-n.png',
         isRoll: true,
+        rolls: [8, 12],
     },
     {
         id: 'p2-n',
@@ -356,6 +363,7 @@ export const PRODUCTS = [
         type: 'toilet_paper',
         image: '/images/form/products/zewa/p2-n.png',
         isRoll: true,
+        rolls: [6],
     },
     {
         id: 'p14',
@@ -365,6 +373,7 @@ export const PRODUCTS = [
         type: 'toilet_paper',
         image: '/images/form/products/zewa/p14.png',
         isRoll: true,
+        rolls: [4, 8, 12],
     },
     {
         id: 'p20',
@@ -374,6 +383,7 @@ export const PRODUCTS = [
         type: 'toilet_paper',
         image: '/images/form/products/zewa/p20.png',
         isRoll: true,
+        rolls: [4, 8],
     },
     {
         id: 'p23',
@@ -383,6 +393,7 @@ export const PRODUCTS = [
         type: 'toilet_paper',
         image: '/images/form/products/zewa/p23.png',
         isRoll: true,
+        rolls: [4],
     },
     {
         id: 'p3-n',
@@ -392,6 +403,7 @@ export const PRODUCTS = [
         type: 'toilet_paper',
         image: '/images/form/products/zewa/p3-n.png',
         isRoll: true,
+        rolls: [4],
     },
     {
         id: 'p24',
@@ -401,6 +413,17 @@ export const PRODUCTS = [
         type: 'toilet_paper',
         image: '/images/form/products/zewa/p24.png',
         isRoll: true,
+        rolls: [4],
+    },
+    {
+        id: 'p9-n',
+        title: ' Туалетная бумага Zewa Exclusive Comfort Aroma Spa 4-х сл.',
+        value: 'p9-n',
+        brand: 'zewa',
+        type: 'toilet_paper',
+        image: '/images/form/products/zewa/p9-n.png',
+        isRoll: true,
+        rolls: [8],
     },
     {
         id: 'p9',
@@ -483,24 +506,24 @@ export const PRODUCTS = [
         image: '/images/form/products/lib/p30.png',
     },
     {
-        id: 'p25',
-        title: 'Прокладки Libresse Pure Sensitive нормал 6',
-        value: 'p25',
-        brand: 'libresse',
-        type: 'toilet_paper',
-        image: '/images/form/products/lib/p25.png',
-    },
-    {
         id: 'p26',
-        title: 'Прокладки Libresse Pure Sensitive ночные 8',
+        title: 'Прокладки Libresse Pure Sensitive ночные 6',
         value: 'p26',
         brand: 'libresse',
         type: 'toilet_paper',
         image: '/images/form/products/lib/p26.png',
     },
     {
+        id: 'p25',
+        title: 'Прокладки Libresse Pure Sensitive нормал 8',
+        value: 'p25',
+        brand: 'libresse',
+        type: 'toilet_paper',
+        image: '/images/form/products/lib/p25.png',
+    },
+    {
         id: 'p5-n',
-        title: 'Прокладки Libresse ультра део нормал 10',
+        title: 'Прокладки Libresse Ultra део нормал 10',
         value: 'p5-n',
         brand: 'libresse',
         type: 'toilet_paper',
@@ -876,10 +899,10 @@ export const SIZES = [
     //     image: '/images/form/products/tena/s23.png'
     // },
     {
-        id: 's24',
+        id: 's23',
         title: 'Впитывающие трусы TENA Lady Slim Pants Normal L 7 шт.',
         product: 'p39',
-        value: 's24',
+        value: 's23',
         image: '/images/form/products/tena/s23.png'
     },
 ]

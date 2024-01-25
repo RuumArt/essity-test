@@ -92,8 +92,8 @@ class Form {
 
         this.submitDOM = {
             requireDiv,
+            checkGroup,
             btnDiv,
-            checkGroup
         };
 
         Object.keys(this.submitDOM).forEach(key => {

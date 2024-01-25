@@ -160,10 +160,10 @@ class AnswerForm extends Form {
             }
         } else if (brand === 'zewa') {
             if (type === 'napkins') {
-                if (['p4', 'p5', 'p6'].includes(productId)) {
+                if (['p4', 'p5', 'p6', 'p6-n'].includes(productId)) {
                     return {
-                        placeholder: 'дд/мм/гг XXX 00:00',
-                        value: '00/00/00 *** HH:MM',
+                        placeholder: 'VEN HANKY дд/мм/гг чч:мм',
+                        value: 'VEN HANKY 00/00/00 HH:MM',
                     }
                 } else {
                     return {
@@ -181,6 +181,18 @@ class AnswerForm extends Form {
                     return {
                         placeholder: 'XXX.XX.X дд.мм.гг 00:00',
                         value: '***.**.* 00.00.00 HH:MM',
+                    }
+                }
+            } else if (type === 'paper_towels') {
+                if (['p3'].includes(productId)) {
+                    return {
+                        placeholder: 'SOV.L.X.X. дд/мм/гг. чч:мм',
+                        value: 'SOV.L.*.*. 00.00.00 HH:MM',
+                    }
+                } else {
+                    return {
+                        placeholder: 'SVE.LX дд.мм.гг чч:мм',
+                        value: 'SVE.L* 00.00.00 HH:MM',
                     }
                 }
             }
@@ -242,9 +254,16 @@ class AnswerForm extends Form {
         this.state.rolls = '';
 
         if (product?.isRoll) {
-            const rollsString = getNumWord(product?.rolls || 4, ['рулон', 'рулона', 'рулонов']);
-            this.state.rolls = rollsString;
-            this.createDom('Количество рулонов в упаковке', 'rolls', `${rollsString}`, null, false, [], 'input', null, this.DOM.product, true);
+            const rollsArr = product?.rolls.map(item => {
+                return {
+                    id: `rolls_${item}`,
+                    title:  getNumWord(item || 4, ['рулон', 'рулона', 'рулонов']),
+                    value: `${item}`,
+                }
+            });
+
+            this.state.rolls = rollsArr[0]?.value;
+            this.createDom('Количество рулонов в упаковке', 'rolls', '', null, false, rollsArr, 'select', null, this.DOM.product);
         }
 
         const currentSizes = SIZES.filter(item => item.product === value);

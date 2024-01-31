@@ -162,8 +162,8 @@ class AnswerForm extends Form {
             if (type === 'napkins') {
                 if (['p4', 'p5', 'p6', 'p6-n'].includes(productId)) {
                     return {
-                        placeholder: 'VEN HANKY дд/мм/гг чч:мм',
-                        value: 'VEN HANKY 00/00/00 HH:MM',
+                        placeholder: 'H12 дд/мм/гг чч:мм',
+                        value: 'H12 00/00/00 HH:MM',
                     }
                 } else {
                     return {
@@ -191,8 +191,9 @@ class AnswerForm extends Form {
                     }
                 } else {
                     return {
-                        placeholder: 'SVE.LX дд.мм.гг чч:мм',
-                        value: 'SVE.L* 00.00.00 HH:MM',
+                        placeholder: 'XXX.LXX дд.мм.гг чч:мм',
+                        value: '***.L** 00.00.00 HH:MM',
+                        lazy: false
                     }
                 }
             }
@@ -404,10 +405,12 @@ class AnswerForm extends Form {
                                 type: 'file',
                                 event: 'change',
                                 cb: this.setFileInput,
-                                rules: [RULES.FILE],
+                                rules: [RULES.FILE, RULES.FILE_EXT,RULES.FILE_SIZE],
                                 tooltip: {
                                     title: 'Фото/видео',
-                                    text: 'Мы сможем разобраться в проблеме быстрее, если получим фото, где хорошо виден брак и сам продукт',
+                                    text: '<p>Мы сможем разобраться в проблеме быстрее, если получим фото, где хорошо виден брак и сам продукт </p>'  + 
+                                    '<p>Для целей соблюдения требований законодательства Российской Федерации просим Вас загружать только цветные фотографии/видеозаписи, содержащие изображение продукции ООО «Эссити». Фотографии/видеозаписи, содержащие персональные данные физического лица (в том числе, изображения) не принимаются.</p>',
+                                    
                                 }
                             });
                         break;
@@ -463,7 +466,10 @@ class AnswerForm extends Form {
     }
 
     createMapInput = (node) => {
-        this.DOM.map = createFormGroup('Введите адрес, откуда забрать образец', 'address', '', '', false, {}, 'address', null, null);
+        this.DOM.map = createFormGroup('Введите адрес, откуда забрать образец', 'address', '', '', false, {}, 'address', null, {
+            title: '',
+            text: 'Мы можем забрать образцы курьером только по России',
+        });
         const target = this.DOM.map.querySelector(`input`);
         target.addEventListener('input', this.setInputValue);
         target.addEventListener('change', this.setInputValue);

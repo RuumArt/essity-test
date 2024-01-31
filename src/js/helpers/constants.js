@@ -16,6 +16,40 @@ export const RULES = {
         value: 5,
         errorMessage: 'Максимальное кол-во файлов - 5',
     },
+    FILE_EXT: {
+        rule: 'files',
+        value: {
+            files: {
+                extensions: ['jpeg', 'JPG' ,'jpg', 'png','webp', 'png','mp4','ogg','webm'],
+                types: [
+                    "image/jpeg", 
+                    "image/jpg", 
+                    "image/x-png", 
+                    "image/png", 
+                    "image/gif", 
+                    "image/webp",
+                    "audio/aac",
+                    "video/mpeg",
+                    "video/mp4",
+                    "video/x-msvideo",
+                    "video/ogg",
+                    "application/ogg",
+                    "video/webm"
+                ],
+            },
+        },
+        errorMessage: 'Можно загружать только фото и видео',
+    },
+    FILE_SIZE: {
+        rule: 'files',
+        value: {
+            files: {
+                maxSize: 20000000,
+            },
+        },
+        errorMessage: 'Можно загружать файлы не более 20 мб',
+    }
+    
 }
 
 export const BRANDS = [
@@ -63,8 +97,9 @@ export const CONTACT_INPUTS = [
         title: 'ФИО',
         isRequired: true,
         type: 'input',
+        mask: /^[a-zA-ZА-Яа-я\s]{1,50}$/,
         rules: [
-            RULES.REQ,
+            RULES.REQ
         ]
     },
     {

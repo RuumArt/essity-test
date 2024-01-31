@@ -85,7 +85,7 @@ class Form {
         btnDiv.appendChild(btn);
 
         const checkGroup = createFormGroupEl();
-        const checkInput = createCheckbox('accept', 'Я согласен с обработкой персональных данных', true);
+        const checkInput = createCheckbox('accept', 'Я согласен с обработкой персональных данных', false);
         checkGroup.appendChild(checkInput);
 
         checkGroup.querySelector('input').addEventListener('change', this.setInputValue);

@@ -215,7 +215,7 @@ export const createFormGroup = (title, name, value, placeholder, isRequired, opt
 
             const tooltipText = document.createElement('span');
             tooltipText.classList.add('tooltip__text');
-            tooltipText.textContent = tooltip.text;
+            tooltipText.innerHTML = tooltip.text;
 
             tooltipContent.appendChild(tooltipTitle);
             tooltipContent.appendChild(tooltipText);

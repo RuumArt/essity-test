@@ -156,43 +156,43 @@ class AnswerForm extends Form {
         if (brand === 'libresse') {
             return {
                 placeholder: 'дд.мм.гггг XXX 00:00',
-                value: '00.00.0000 *** HH:MM',
+                value: 'дд.мм.гггг XXX HH:MM',
             }
         } else if (brand === 'zewa') {
             if (type === 'napkins') {
                 if (['p4', 'p5', 'p6', 'p6-n'].includes(productId)) {
                     return {
                         placeholder: 'H12 дд/мм/гг чч:мм',
-                        value: 'H12 00/00/00 HH:MM',
+                        value: 'H12 дд/мм/гг HH:MM',
                     }
                 } else {
                     return {
                         placeholder: 'дд/мм/гг XXX 00:00',
-                        value: '00/00/00 *** HH:MM',
+                        value: 'дд/мм/гг XXX HH:MM',
                     }
                 }
             } else if (type === 'toilet_paper') {
                 if (['p9', 'p10', 'p11', 'p4-n'].includes(productId)) {
                     return {
                         placeholder: 'дд.мм.гггг. XX 00:00',
-                        value: '00.00.0000. ** HH:MM',
+                        value: 'дд.мм.гггг. XX HH:MM',
                     }
                 } else {
                     return {
                         placeholder: 'XXX.XX.X дд.мм.гг 00:00',
-                        value: '***.**.* 00.00.00 HH:MM',
+                        value: 'XXX.XX.X дд.мм.гг HH:MM',
                     }
                 }
             } else if (type === 'paper_towels') {
                 if (['p3'].includes(productId)) {
                     return {
                         placeholder: 'SOV.L.X.X. дд/мм/гг. чч:мм',
-                        value: 'SOV.L.*.*. 00.00.00 HH:MM',
+                        value: 'SOV.L.X.X. дд.мм.гг HH:MM',
                     }
                 } else {
                     return {
                         placeholder: 'XXX.LXX дд.мм.гг чч:мм',
-                        value: '***.L** 00.00.00 HH:MM',
+                        value: 'XXX.LXX дд.мм.гг HH:MM',
                         lazy: false
                     }
                 }
@@ -220,23 +220,49 @@ class AnswerForm extends Form {
             if (mask?.value) {
                 this.contactMask = IMask(input, {
                     mask: mask.value,
+                    lazy: true,
                     blocks: {
+                        X: {
+                          mask: '0',
+                          placeholderChar: 'X',
+                          maxLength: 1,
+                        },
+                        'д': {
+                            mask: '0',
+                            placeholderChar: 'д',
+                        },
+                        'м': {
+                            mask: '0',
+                            placeholderChar: 'м',
+                        },
+                        'г': {
+                            mask: '0',
+                            placeholderChar: 'г',
+                        },
                         HH: {
                             mask: IMask.MaskedRange,
-                            placeholderChar: 'HH',
+                            placeholderChar: '0',
                             from: 0,
                             to: 23,
                             maxLength: 2
                         },
                         MM: {
                             mask: IMask.MaskedRange,
-                            placeholderChar: 'MM',
+                            placeholderChar: '0',
                             from: 0,
                             to: 59,
                             maxLength: 2
                         }
                     }
                 });
+
+                input.addEventListener('focus', () => {
+                    this.contactMask.updateOptions({ lazy: false });
+                }, true);
+
+                input.addEventListener('blur', () => {
+                    this.contactMask.updateOptions({ lazy: true });
+                }, true);
             }
         }
     }

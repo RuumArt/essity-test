@@ -223,20 +223,27 @@ class AnswerForm extends Form {
                     lazy: true,
                     blocks: {
                         X: {
-                          mask: '0',
+                          mask: /^[a-zA-Zа-яА-Я0-9]$/,
                           placeholderChar: 'X',
                           maxLength: 1,
                         },
-                        'д': {
-                            mask: '0',
+                        'дд': {
+                            mask: IMask.MaskedRange,
+                            from: 1,
+                            to: 31,
                             placeholderChar: 'д',
+                            maxLength: 2
                         },
-                        'м': {
-                            mask: '0',
+                        'мм': {
+                            from: 1,
+                            to: 12,
+                            mask: IMask.MaskedRange,
                             placeholderChar: 'м',
                         },
-                        'г': {
-                            mask: '0',
+                        'гг': {
+                            from: 1,
+                            to: 99,
+                            mask: IMask.MaskedRange,
                             placeholderChar: 'г',
                         },
                         HH: {

@@ -1,3 +1,4 @@
+
 import {
     createFormGroup, getNumWord,
 } from "../helpers/formUtils.js";
@@ -222,29 +223,28 @@ class AnswerForm extends Form {
                     lazy: true,
                     blocks: {
                         X: {
-                          mask: '0',
+                          mask: /^[a-zA-Zа-яА-Я0-9]$/,
                           placeholderChar: 'X',
                           maxLength: 1,
                         },
                         'дд': {
                             mask: IMask.MaskedRange,
-                            placeholderChar: 'д',
                             from: 1,
                             to: 31,
+                            placeholderChar: 'д',
                             maxLength: 2
                         },
                         'мм': {
-                            mask: IMask.MaskedRange,
-                            placeholderChar: 'м',
                             from: 1,
                             to: 12,
-                            maxLength: 2
+                            mask: IMask.MaskedRange,
+                            placeholderChar: 'м',
                         },
                         'гг': {
-                            mask: IMask.MaskedRange,
-                            placeholderChar: 'г',
                             from: 10,
                             to: 24,
+                            mask: IMask.MaskedRange,
+                            placeholderChar: 'г',
                             maxLength: 2
                         },
                         'гггг': {

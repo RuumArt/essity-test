@@ -29,6 +29,19 @@ class AddressInput {
                 this.setAddressValue(firstGeoObject.getAddressLine());
             })
         });
+
+        const map = this.map;
+        this.suggest.events.add('select', function (evt) {
+            const q = evt.get('item').value;
+            ymaps.geocode(q,{results:1}).then(
+                function(res) {
+                    const GeoObj = res.geoObjects.get(0);
+                    const coords = GeoObj.geometry.getCoordinates();
+                    map.setCenter(coords).Redraw();
+                }
+            );
+        });
+
     }
 
     initMap = () => {

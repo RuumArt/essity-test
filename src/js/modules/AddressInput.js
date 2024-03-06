@@ -37,7 +37,8 @@ class AddressInput {
                 function(res) {
                     const GeoObj = res.geoObjects.get(0);
                     const coords = GeoObj.geometry.getCoordinates();
-                    map.setCenter(coords).Redraw();
+                    map.balloon.open(coords, q);
+                    map.setCenter(coords).setZoom(11).Update().Redraw();
                 }
             );
         });

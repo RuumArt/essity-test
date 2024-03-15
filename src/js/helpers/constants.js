@@ -21,7 +21,9 @@ export const RULES = {
         rule: 'files',
         value: {
             files: {
-                extensions: ['jpeg', 'JPG' ,'jpg', 'png','webp', 'png','mp4','ogg','webm'],
+                extensions: ['jpeg', 'JPG' ,'jpg', 'png','webp', 'png', 'svg', 'webp',
+                    'mp4', 'ogg', 'webm', 'avi', 'mov', 'flv', 'm3u8', 'ts', '3gp'
+                ],
                 types: [
                     "image/jpeg",
                     "image/jpg",
@@ -32,10 +34,16 @@ export const RULES = {
                     "audio/aac",
                     "video/mpeg",
                     "video/mp4",
+                    "image/svg+xml",
                     "video/x-msvideo",
                     "video/ogg",
                     "application/ogg",
-                    "video/webm"
+                    "video/webm",
+                    "video/x-flv",
+                    "application/x-mpegURL",
+                    "video/quicktime",
+                    "video/3gpp",
+                    "video/MP2T",
                 ],
             },
         },

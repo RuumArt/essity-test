@@ -277,7 +277,7 @@ export const createCheckbox = (name, text, isChecked = false) => {
 
     const label = document.createElement('div');
     label.classList.add('custom-checkbox__label');
-    label.textContent = text;
+    label.innerHTML = text;
 
     root.appendChild(input);
     root.appendChild(icon);

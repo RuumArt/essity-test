@@ -200,8 +200,8 @@ class AnswerForm extends Form {
         }
 
         return {
-            placeholder: 'LOT 2100021541 211217 09:04',
-            value: 'LOT 0000000000 000000 HH:MM',
+            placeholder: 'LOT 2130012678 230302 23:46 или LOT RU 16.05.2023 10:52 ',
+            value: 'LOT W W HH:MM',
         };
     }
 
@@ -222,6 +222,11 @@ class AnswerForm extends Form {
                     mask: mask.value,
                     lazy: true,
                     blocks: {
+                        W: {
+                            mask: /^[a-zA-Zа-яА-Я0-9\.]+$/,
+                            placeholderChar: 'X',
+                            minLength: 1,
+                        },
                         X: {
                           mask: /^[a-zA-Zа-яА-Я0-9]$/,
                           placeholderChar: 'X',
@@ -409,7 +414,7 @@ class AnswerForm extends Form {
                                 type: 'input',
                                 tooltip: {
                                     title: 'Что такое код производства?',
-                                    text: 'Код производства – это специальный код, который поможет нам отследить, на какой фабрике был сделан продукт и в какое время.',
+                                    text: 'Код производства – это специальный код, который поможет нам отследить, на какой фабрике был сделан продукт и в какое время. Код выглядит примерно так:  LOT 2130012678 230302 23:46 или LOT RU 16.05.2023 10:52',
                                 }
                             });
 

@@ -80,7 +80,7 @@ export const BRANDS = [
         id: 'Tena',
         title: 'ТЕНА',
         value: 'tena',
-        image: '/images/form/tena.png',
+        image: '/images/form/tena.svg',
         folder: 'tena',
     }
 ];
